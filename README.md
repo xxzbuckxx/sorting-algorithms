@@ -1,3 +1,6 @@
 # CSE13S Repo
 
-Repo to hold CSE13S work.
+CSE13s Lab work stored here.
+
+Author: Zack Traczyk
+Email: ztraczyk@ucsc.edu
