@@ -42,17 +42,6 @@ static inline uint8_t roll(uint8_t n) {
 }
 
 /*
- * Struct that represents a player
- *
- * *name: a pointer to one of the names in the header file
- * balance: current players balance
-*/
-typedef struct player {
-    char *name;
-    uint8_t balance;
-} player;
-
-/*
  * Main Execution of the Program happens here
  *
  * The program contains 3 main parts:
@@ -80,12 +69,11 @@ int main() {
 
     /* Create array of players */
     uint8_t i;
-    player players[numplayers];
+    uint8_t players[numplayers];
 
     for (i = 0; i < numplayers; i++) {
         /* name pointer of struct pointing to beginning of character arr */
-        players[i].name = philosophers[i];
-        players[i].balance = 3;
+        players[i] = 3;
     }
 
     /* Simulate game */
@@ -96,62 +84,67 @@ int main() {
      * random value from 1-6 the range of random numbers must be divided by 6 */
     while (inplayers > 1) {
         uint8_t p;
-        for (p = 0; p < numplayers; p++) {
-            printf("\n%s rolls...", players[p].name);
+        for (p = 0; p < numplayers && inplayers > 1; p++) {
+
+            if (players[p] == 0) {
+                continue;
+            }
+
+            printf("%s rolls...", philosophers[p]);
 
             uint8_t m;
-            for (m = 0; m < players[p].balance && m < 3; m++) {
+            uint8_t roles = players[p];
+            for (m = 0; m < roles && m < 3; m++) {
 
                 uint8_t face = die[roll(6)];
-                
+
                 if (face == PASS) {
-                    printf(" gets a pass");
                     continue;
                 }
 
-                player *pneighbor;
-                switch(face) {
-                    case LEFT:
-                        pneighbor = &players[left(p, numplayers)];
-                        printf(" gives $1 to %s", pneighbor->name);
+                players[p]--;
 
-                        players[p].balance--;
+                switch (face) {
+                case LEFT: {
+                    uint8_t target = left(p, numplayers);
+                    printf(" gives $1 to %s", philosophers[target]);
 
-                        if (pneighbor->balance++ == 0) {
-                            inplayers++;
-                        }
-                        break;
-                    case RIGHT:
-                        pneighbor = &players[right(p, numplayers)];
-                        printf(" gives $1 to %s", pneighbor->name);
+                    if (players[target]++ == 0) {
+                        inplayers++;
+                    }
+                } break;
+                case RIGHT: {
+                    uint8_t target = right(p, numplayers);
+                    printf(" gives $1 to %s", philosophers[target]);
 
-                        players[p].balance--;
-
-                        if (pneighbor->balance++ == 0) {
-                            inplayers++;
-                        }
-                        break;
-                    case CENTER:
-                        printf("POT");
-                        pot++;
-                        break;
+                    if (players[target]++ == 0) {
+                        inplayers++;
+                    }
+                } break;
+                case CENTER:
+                    printf(" puts $1 in the pot");
+                    pot++;
+                    break;
                 }
 
-                if (players[p].balance <= 0) {
+                if (players[p] <= 0) {
                     inplayers--;
                 }
 
                 if (inplayers == 1) {
-                    printf("Homie won! the $%u pot", pot);
-                    return 0;
+                    break;
                 }
-
-
             }
 
-            /* for (i = 0; i < numplayers; i++) { */
-            /*     printf("%s has %u\n", players[i].name, players[i].balance); */
-            /* } */
+            printf("\n");
+        }
+    }
+
+    for (i = 0; i < numplayers; i++) {
+        if (players[i] > 1) {
+            printf("%s wins the $%d pot with $%d left in in the bank!\n", philosophers[i], pot,
+                players[i]);
+            break;
         }
     }
 
