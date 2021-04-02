@@ -31,6 +31,12 @@ static inline uint8_t right(uint8_t pos, uint8_t players) {
 }
 
 /* roll function taken from Proff Long  */
+
+/*
+ * Returns random number from 0 to n
+ *
+ * n: upper limit of random (not inclusive)
+*/
 static inline uint8_t roll(uint8_t n) {
     return (random() % n);
 }
