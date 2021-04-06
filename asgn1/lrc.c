@@ -83,8 +83,7 @@ int main() {
     /* Since random number is generated from 0 - RAND_MAX then to choose a
      * random value from 1-6 the range of random numbers must be divided by 6 */
     while (inplayers > 1) {
-        uint8_t p;
-        for (p = 0; p < numplayers && inplayers > 1; p++) {
+        for (uint8_t p = 0; p < numplayers && inplayers > 1; p++) {
 
             if (players[p] == 0) {
                 continue;
@@ -92,13 +91,13 @@ int main() {
 
             printf("%s rolls...", philosophers[p]);
 
-            uint8_t m;
             uint8_t roles = players[p];
-            for (m = 0; m < roles && m < 3; m++) {
+            for (uint8_t m = 0; m < roles && m < 3; m++) {
 
                 uint8_t face = die[roll(6)];
 
                 if (face == PASS) {
+                    printf(" gets a pass");
                     continue;
                 }
 
@@ -140,7 +139,7 @@ int main() {
         }
     }
 
-    for (i = 0; i < numplayers; i++) {
+    for (uint8_t i = 0; i < numplayers; i++) {
         if (players[i] > 1) {
             printf("%s wins the $%d pot with $%d left in in the bank!\n", philosophers[i], pot,
                 players[i]);
