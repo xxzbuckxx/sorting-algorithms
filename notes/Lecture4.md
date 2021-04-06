@@ -78,7 +78,11 @@ int mian(void) {
 
 * {} creates a new scope
 * can create new local variables in a scope
-* 
+	* variables can have any type and any legal name 
+	* If they have the same name as a variable in an outer scope, then they hide that variable.
+* used to group statements
+* called a block
+* A block introduces a local scope
 
 ## I/O
 
@@ -103,3 +107,4 @@ int mian(void) {
 * should almost NEVER
 * for non-local error handling
 	* when you are in a bunch of nested stuff and you need to get out 
+
