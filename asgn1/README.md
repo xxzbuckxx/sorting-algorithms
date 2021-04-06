@@ -31,4 +31,10 @@ This is a header file containg the array of Philosopher names that the game uses
 
 #### DESIGN.pdf
 
-This document details how the program was designed.
+This document details how the program was designed. This includes:
+
+* The objective of the assignment
+* What was given in the lab doc
+* An explanation of data types used
+* An explanation of my general approach
+* Pseudocode

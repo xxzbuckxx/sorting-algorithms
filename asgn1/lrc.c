@@ -127,7 +127,7 @@ int main() {
                 case CENTER: {
                     printf(" puts $1 in the pot");
                     pot++;
-                 } break;
+                } break;
                 default: break;
                 }
 
