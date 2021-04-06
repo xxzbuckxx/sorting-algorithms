@@ -62,6 +62,7 @@ int main() {
 
     printf("Enter the number of players between 2 and 14 inclusive: ");
 
+    // Ensure Number of players is within game bands
     if ((scanf("%d", &numplayers) < 1) || numplayers < 2 || numplayers > 14) {
         printf("The number of philosophers must be 2-14! >:(\n");
         exit(EXIT_FAILURE);
@@ -81,30 +82,35 @@ int main() {
     while (inplayers > 1) {
         for (uint8_t p = 0; p < numplayers && inplayers > 1; p++) {
 
+            // Skip players turn if they have no money
             if (players[p] == 0) {
                 continue;
             }
 
             printf("%s rolls...", philosophers[p]);
 
-            uint8_t roles = players[p];
-            for (uint8_t m = 0; m < roles && m < 3; m++) {
+            // Player gets up to three roles, roles = balance
+            uint8_t rolls = players[p] < 3 ? players[p] : 3;
 
-                uint8_t face = die[roll(6)];
+            // Player takes turns
+            for (uint8_t m = 0; m < rolls; m++) {
 
+                uint8_t face = die[roll(6)]; // Roll die
+
+                // Skip rest of loop if player rolls a PASS
                 if (face == PASS) {
                     printf(" gets a pass");
                     continue;
                 }
 
-                players[p]--;
+                players[p]--; // Decrease balance
 
                 switch (face) {
-                // Braces for LEFT and RIGHT needed because creating new scope
                 case LEFT: {
                     uint8_t target = left(p, numplayers);
                     printf(" gives $1 to %s", philosophers[target]);
 
+                    // If player was out and is now in then increase in players
                     if (players[target]++ == 0) {
                         inplayers++;
                     }
@@ -113,14 +119,15 @@ int main() {
                     uint8_t target = right(p, numplayers);
                     printf(" gives $1 to %s", philosophers[target]);
 
+                    // If player was out and is now in then increase in players
                     if (players[target]++ == 0) {
                         inplayers++;
                     }
                 } break;
-                case CENTER:
+                case CENTER: {
                     printf(" puts $1 in the pot");
                     pot++;
-                    break;
+                 } break;
                 default: break;
                 }
 
@@ -129,7 +136,7 @@ int main() {
                     inplayers--;
                 }
 
-                // Game is over if only one player in
+                // Game is over if only one player is in
                 if (inplayers == 1) {
                     break;
                 }
@@ -141,7 +148,7 @@ int main() {
 
     // Find winner and print
     for (uint8_t i = 0; i < numplayers; i++) {
-        if (players[i] > 1) {
+        if (players[i] >= 1) {
             printf("%s wins the $%d pot with $%d left in in the bank!\n", philosophers[i], pot,
                 players[i]);
             break;
