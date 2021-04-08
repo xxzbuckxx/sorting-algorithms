@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h> // For getopt()
-#include "mathlib.c"
+#include "mathlib.h"
 
 #define OPTIONS "asctl"
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
             break;
         case 's':
             printf("-s option.\n");
-            printf("%f\n", arcSin(4));
+            printf("%f\n", arcSin(0.5));
             break;
         case 'c':
             printf("-c option.\n");
