@@ -52,15 +52,21 @@ static inline uint8_t roll(uint8_t n) {
 int main() {
 
     // Ask for input
-    int seed = 0;
-    int numplayers = 0;
+    int64_t seed;
+    int32_t numplayers;
 
     printf("Enter the seed: ");
-    scanf("%d", &seed);
+
+    // Ensure seed is positive
+    if ((scanf("%ld", &seed) < 1) || seed <= 0) {
+        printf("Pseudorandom seed must be greater than 0 (%ld)\n", seed);
+        exit(EXIT_FAILURE);
+    }
 
     srandom(seed); // Set random seed
 
     printf("Enter the number of players between 2 and 14 inclusive: ");
+      
 
     // Ensure Number of players is within game bands
     if ((scanf("%d", &numplayers) < 1) || numplayers < 2 || numplayers > 14) {
