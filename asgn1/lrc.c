@@ -66,7 +66,6 @@ int main() {
     srandom(seed); // Set random seed
 
     printf("Enter the number of players between 2 and 14 inclusive: ");
-      
 
     // Ensure Number of players is within game bands
     if ((scanf("%d", &numplayers) < 1) || numplayers < 2 || numplayers > 14) {
