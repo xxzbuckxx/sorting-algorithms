@@ -1,50 +1,63 @@
 #include "mathlib.h"
-#include <stdio.h>
-#include <stdint.h> // extended integer library
+
 #include <math.h> // Pi
+#include <stdint.h> // extended integer library
+#include <stdio.h>
 
 #define EPSILON 1e-10
 
+// fabs and Exp taken from proff long
+
+inline double fabs(double x) {
+    return x > 0 ? x : -x;
+}
+
+double Sqrt(double x) {
+    double y = 1.0;
+    for (double guess = 0.0; fabs(y - guess) > EPSILON; y = (y + x / y) / 2.0) {
+        guess = y;
+    }
+    return y;
+}
+
+double Exp(double x) {
+    double term = 1, sum = 1;
+    for (int k = 1; fabs(term) > EPSILON; k += 1) {
+        term *= x / k;
+        sum += term;
+    }
+    return sum;
+}
+
 double arcSin(double x) {
-    // Implement
-    // Factorial
     double output = x, term = x;
-    uint32_t k = 0;
+    uint64_t k = 0;
     const double sqr = x * x;
 
     double n = x;
     double d_factorial = 1;
 
+    while (fabs(term) > EPSILON) {
+        k += 2;
 
-    // keep going till k term is less than epsilon
-    while (term > EPSILON) {
-        k++;
-        n *= k*sqr;
-        d_factorial *= k + 1;
+        n *= (k - 1.0) * sqr;
+        d_factorial *= k;
 
-        term = n / (d_factorial * (k + 2));
+        term = n / (d_factorial * (k + 1.0));
         output += term;
     }
-
     return output;
 }
 
 double arcCos(double x) {
-    // Implement
-    return x;
+    return M_PI_2 - arcSin(x); // M_PI_2 = pi / 2
 }
 
 double arcTan(double x) {
-    // Implement
-    return x;
+    return arcSin(x / sqrt(x * x + 1));
 }
 
 double Log(double x) {
     // Implement
     return x;
-}
-
-int main(){
-    printf(" calculated %16.12f should be %16.12f\n", arcSin(0.5), M_PI / 6.0);
-    return 0;
 }
