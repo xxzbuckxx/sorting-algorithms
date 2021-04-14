@@ -6,11 +6,11 @@
 
 #define OPTIONS "asctl"
 
-static void tests(double (*operation)(), double (*library)()) {
+static void tests(double (*operation)(), double (*library)(), double start, double end) {
 
     printf("    x\t\t   myfunc\thomie func        difference\n");
     printf("    -\t\t   ------\t----------        ---------\n");
-    for (double x = -1; x < 1; x += 0.1) {
+    for (double x = start; x < end; x += 0.1) {
         double my_imp = operation(x);
         double lib_imp = library(x);
         double difference = my_imp - lib_imp;
@@ -26,11 +26,11 @@ int main(int argc, char **argv) {
 
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
         switch (opt) {
-        case 'a': tests(arcSin, asin); break;
-        case 's': tests(arcSin, asin); break;
-        case 'c': tests(arcCos, acos); break;
-        case 't': tests(arcTan, atan); break;
-        case 'l': tests(Log, log); break;
+        case 'a': tests(arcSin, asin, -1, 1); break;
+        case 's': tests(arcSin, asin, -1, 1); break;
+        case 'c': tests(arcCos, acos, -1, 1); break;
+        case 't': tests(arcTan, atan, 1, 10); break;
+        case 'l': tests(Log, log, 1, 10); break;
         }
     }
     return 0;

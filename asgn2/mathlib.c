@@ -54,7 +54,26 @@ double arcCos(double x) {
 }
 
 double arcTan(double x) {
-    return arcSin(x / sqrt(x * x + 1));
+    /* return arcSin(x / sqrt(x * x + 1)); */
+
+    double output = x, term = x;
+    uint64_t k = 0;
+    const double sqr = x * x;
+
+    double n = x;
+    double d_factorial = 1;
+
+    while (fabs(term) > EPSILON) {
+        k += 2;
+
+        n *= (k - 1.0) * sqr;
+        d_factorial *= k;
+
+        term = n / (d_factorial * (k + 1.0));
+        output += term;
+    }
+    return output;
+
 }
 
 double Log(double x) {

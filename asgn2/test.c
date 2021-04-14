@@ -13,7 +13,9 @@ double arcSin(double x, uint64_t terms) {
     double d_factorial = 1;
 
     // keep going till k term is less than epsilon
-    while (((k + 2) / 2)  <= terms) {
+    // while (((k + 2) / 2)  <= terms) {
+    while (term > EPSILON) {
+
         k += 2;
 
         n *= (k - 1) * sqr;
@@ -32,6 +34,6 @@ double arcSin(double x, uint64_t terms) {
 }
 
 int main() {
-    printf("%4.12f\n",  arcSin(0.5, 2));
+    printf("%4.12f\n",  arcSin(1, 80));
     return 0;
 }
