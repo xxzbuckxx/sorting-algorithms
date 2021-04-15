@@ -8,8 +8,8 @@
 
 static void tests(double (*operation)(), double (*library)(), double start, double end) {
 
-    printf("    x\t\t   myfunc\thomie func        difference\n");
-    printf("    -\t\t   ------\t----------        ---------\n");
+    printf("  x\t\t  myfunc\t   libfunc\tdifference\n");
+    printf("  -\t\t  ------\t   -------\t---------\n");
     for (double x = start; x < end; x += 0.1) {
         double my_imp = operation(x);
         double lib_imp = library(x);
@@ -23,10 +23,16 @@ int main(int argc, char **argv) {
     int opt = 0;
 
     // Remember to ensure that tests do not run twice
+    // Remember to add default case
 
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
         switch (opt) {
-        case 'a': tests(arcSin, asin, -1, 1); break;
+        case 'a':
+            tests(arcSin, asin, -1, 1);
+            tests(arcCos, acos, -1, 1);
+            tests(arcTan, atan, -1, 10);
+            tests(Log, log, 1, 10);
+            return 0;
         case 's': tests(arcSin, asin, -1, 1); break;
         case 'c': tests(arcCos, acos, -1, 1); break;
         case 't': tests(arcTan, atan, 1, 10); break;
