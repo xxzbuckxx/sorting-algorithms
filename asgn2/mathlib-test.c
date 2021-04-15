@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h> // For getopt()
+#include <time.h>
 
 #define OPTIONS "asctl"
 
@@ -22,9 +23,11 @@ static void tests(double (*operation)(), double (*library)(), double start, doub
 int main(int argc, char **argv) {
     int opt = 0;
 
+    double time_spent = 0.0;
+    clock_t begin = clock();
+
     // Remember to ensure that tests do not run twice
     // Remember to add default case
-
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
         switch (opt) {
         case 'a':
@@ -39,5 +42,9 @@ int main(int argc, char **argv) {
         case 'l': tests(Log, log, 1, 10); break;
         }
     }
+
+    clock_t end = clock();
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Time elpased is %f seconds", time_spent);
     return 0;
 }
