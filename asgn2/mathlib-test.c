@@ -3,7 +3,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h> // For getopt()
-#include <time.h>
 
 #define OPTIONS "asctl"
 
@@ -15,7 +14,7 @@ static void tests(double (*operation)(), double (*library)(), double start, doub
         double my_imp = operation(x);
         double lib_imp = library(x);
         double difference = my_imp - lib_imp;
-        printf(" %7.4f % 16.5f % 16.5f % 16.10f\n", x, my_imp, lib_imp, difference);
+        printf(" %7.4f % 16.5f % 16.5f % 16.15f\n", x, my_imp, lib_imp, difference);
         /* printf(" %7.41f % 16.81f % 16.81f % 16.101f\n", x, my_imp, lib_imp, difference); */
     }
 }
@@ -23,9 +22,7 @@ static void tests(double (*operation)(), double (*library)(), double start, doub
 int main(int argc, char **argv) {
     int opt = 0;
 
-    double time_spent = 0.0;
-    clock_t begin = clock();
-
+    // Parse w getopt before
     // Remember to ensure that tests do not run twice
     // Remember to add default case
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
@@ -43,8 +40,5 @@ int main(int argc, char **argv) {
         }
     }
 
-    clock_t end = clock();
-    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("Time elpased is %f seconds", time_spent);
     return 0;
 }
