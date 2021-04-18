@@ -16,7 +16,7 @@ set terminal jpeg size 1200, 800
 set pointsize 0.2
 set title "Differences in Approximation"
 set xlabel "x"
-set ylabel "Small Numeric Library vs Standard C Library"
+set ylabel "Small Numeric Library - Standard C Library"
 show title
 show xlabel
 show ylabel
