@@ -28,6 +28,7 @@ set title "Differences in Approximation of ln(x)"
 plot "/tmp/log.dat" with points lc rgbcolor "#724CEF" title "diff. btwn. std. lib and this lib's log(x)"
 set arrow from -0.7, graph 0 to -0.7, graph 1 nohead lc "#55bbbbbb"
 set arrow from 0.7, graph 0 to 0.7, graph 1 nohead lc "#55bbbbbb"
+set xtics autofreq 0.1
 set output "arcsin.jpg"
 set title "Differences in Approximation of Arcsin(x)"
 plot "/tmp/asin.dat" with points lc rgbcolor "#724cEF" title "diff. btwn. std. lib and this lib's arcsin(x)"
