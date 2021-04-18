@@ -8,14 +8,15 @@
 
 static void tests(double (*operation)(), double (*library)(), double start, double end) {
 
-    printf("  x\t\t  myfunc\t   libfunc\tdifference\n");
-    printf("  -\t\t  ------\t   -------\t---------\n");
-    for (double x = start; x < end; x += 0.1) {
+    /* printf("  x\t\t  myfunc\t   libfunc\tdifference\n"); */
+    /* printf("  -\t\t  ------\t   -------\t---------\n"); */
+    for (double x = start; x < end; x += 0.00001) {
         double my_imp = operation(x);
         double lib_imp = library(x);
         double difference = my_imp - lib_imp;
-        printf(" %7.4f % 16.5f % 16.5f % 16.15f\n", x, my_imp, lib_imp, difference);
+        /* printf(" %7.4f % 16.5f % 16.5f % 16.15f\n", x, my_imp, lib_imp, difference); */
         /* printf(" %7.41f % 16.81f % 16.81f % 16.101f\n", x, my_imp, lib_imp, difference); */
+        printf("%7.3f %16.20f\n", x, difference);
     }
 }
 

@@ -8,6 +8,6 @@ mathlib: mathlib.c mathlib.h
 mathlib-test: mathlib-test.c mathlib.h mathlib.c
 	$(CC) $(CFLAGS) -o mathlib-test mathlib-test.c mathlib.c -lm
 clean:
-	rm -f mathlib-test a.out
+	rm -f mathlib-test a.out *.jpg *.txt
 scan-build: clean
 	scan-build make
