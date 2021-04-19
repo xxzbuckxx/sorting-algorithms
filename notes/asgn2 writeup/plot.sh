@@ -1,5 +1,4 @@
 #!/bin/bash
-python3	maxs.py
 cd ../../asgn2/ && make clean
 make
 for i in asin acos atan log
@@ -14,17 +13,6 @@ done
 make clean && cd ../notes/asgn2\ writeup
 gnuplot <<XX
 set terminal jpeg size 1200, 800
-set pointsize 0.2
-set title "Intervals between 'Jumps'"
-set xlabel "x"
-set ylabel "k-1 local maximum - k local maximum"
-
-set output "arcsin_diff_lines.jpg"
-plot "/tmp/asin_diff.dat" with linespoints title "Interval of 0.1"
-
-set output "arcsin_diff_points.jpg"
-plot "/tmp/asin_diff_full.dat" with points lc rgbcolor "#55724CEF" title "Interval of 0.0001"
-
 set pointsize 0.2
 set title "Differences in Approximation"
 set xlabel "x"
