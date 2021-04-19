@@ -29,9 +29,6 @@ double Exp(double x) {
     return sum;
 }
 
-
-
-
 //
 // Returns the value of arcSin(x) using a Taylor series approximation
 //
