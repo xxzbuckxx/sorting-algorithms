@@ -8,7 +8,6 @@ The program asks for operation as:
 	-c for arcos
 	... etc
 
-
 # How to Build
 
 Execute the command `make` and it should compile using the provided makefile.
@@ -44,3 +43,15 @@ This document details how the program was designed. This includes:
 #### WRITEUP.pdf
 
 An explanation on the difference between my implementation and the standard library.
+
+#### Mistakes
+
+There are definitely some errors with my code. Here are the big ones:
+
+1. test harness does not parse input (-tsa results in arctan and arcsin repeated)
+2. I fixed a sign error in arcCos by using a ternary operator instead of fixing the math
+3. First value of Log is negative for some reason
+
+#### Resources
+
+* [Passing Function pointers as parameters to functions](https://codeforwin.org/2017/12/pass-function-pointer-as-parameter-another-function-c.html#:~:text=In%20C%20programming%20you%20can,another%20function%20using%20function%20pointers)

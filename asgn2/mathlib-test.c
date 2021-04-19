@@ -9,11 +9,10 @@
 //
 // Prints tests on given interval
 //
-// operation: function pointer
-// library: function pointer
-// name: string
+// operation: this library
+// library: standard library
+// name: name of function (string)
 // start: start of iteration
-// end: end of iteration
 //
 static void tests(
     double (*operation)(), double (*library)(), char name[], double start, double end) {
