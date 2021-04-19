@@ -20,7 +20,10 @@ set xlabel "x"
 set ylabel "k-1 local maximum - k local maximum"
 
 set output "arcsin_diff_lines.jpg"
-plot "/tmp/asin_diff.dat" with linespoints title "Interval Between local maxima"
+plot "/tmp/asin_diff.dat" with linespoints title "Interval of 0.1"
+
+set output "arcsin_diff_points.jpg"
+plot "/tmp/asin_diff_full.dat" with points lc rgbcolor "#55724CEF" title "Interval of 0.0001"
 
 set pointsize 0.2
 set title "Differences in Approximation"
