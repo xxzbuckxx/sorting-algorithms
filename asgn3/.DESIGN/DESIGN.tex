@@ -27,7 +27,14 @@ The objective of this lab is to implement Bubble Sort, Shell Sort, and two Quick
 
 \section{Given}
 
-These code snippets are given
+These code snippets are given:
+
+\begin{itemize}
+		\item Stack implementation for Quicksort
+		\item Queue implementation for Quicksort
+		\item Python implementation of the algorithms (for pseudocode)
+
+\end{itemize}
 
 \section{Prelab Questions}
 
@@ -63,7 +70,7 @@ These code snippets are given
 
 	\item The worst time complexity for Shell Sort depends on the sequence of gaps. Investigate why this is the case. How can you improve the time complexity of this sort by changing the gap size? Cite any sources you used.
 		\begin{answered}
-			Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}.
+			Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}. Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at 0, 2 is at n, 3 is at 1 and four is at n - 1. If shell sort had a gap size of two then it would have to do a bunch of comparisons to sort it. However, if the gap size starts at 1 less than the length of the array and decreases, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
 		\end{answered}
 
 \end{QandA}
@@ -72,7 +79,7 @@ These code snippets are given
 \begin{QandA}
 	\item Quicksort, with a worse case time complexity of $O(n^2)$, doesn’t seem to live up to its name. Investigate and explain why Quicksort isn’t doomed by its worst case scenario. Make sure to cite any sources you use.
 		\begin{answered}
-			answer
+			Quicksort's worst case happens when a pivot element is picked at either the end or beginning of the array. However, this does not doom Quicksort since the pivot point is decided by the programmer. In other words, $O(N^2)$ only happens because of the programmers own fault rather than intrinsic inefficiency of the algorithm. \href{https://www.baeldung.com/cs/quicksort-time-complexity-worst-case}{Baeldung CS}
 		\end{answered}
 
 
@@ -82,7 +89,7 @@ These code snippets are given
 \begin{QandA}
 	\item Explain how you plan on keeping track of the number of moves and comparisons since each sort will reside within its own file.
 		\begin{answered}
-			answer
+			The number of moves and comparisons will be tracked by returning these values from the functions.
 		\end{answered}
 
 
@@ -96,4 +103,6 @@ Bubble Sort
 Varation of insertion sort.
 Given a gap sequnce, the Pratt sequence (also called 3-smooth), in header file
 \section{Quick Sort}
+
 \end{document}
+
