@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{charter} % font
+\usepackage[margin=1in]{geometry} % margin
+\usepackage{hyperref} % hyperlinks
+\usepackage{enumitem} % Enumeration
+
+% Questions
+\newenvironment{QandA}{\begin{enumerate}[label=\bfseries\alph*.]\bfseries}
+                      {\end{enumerate}}
+\newenvironment{answered}{\par\normalfont}{}
+\usepackage{lipsum}
+
+\title{%
+	\textbf{Assignment 3 \\ 
+	Sorting: Putting your affairs in order \\
+	\large DESIGN DOCUMENT}}
+\author{Zack Traczyk \\ CSE13S - Spring 2021}
+\date{Due: April 25\textsuperscript{th} at 11:59 pm}
+
+\begin{document}
+
+\maketitle
+
+\section{Objective}
+
+The objective of this lab is to implement Bubble Sort, Shell Sort, and two Quick-sorts. In addition to these implementations a big O analysis is done.
+
+\section{Given}
+
+These code snippets are given
+
+\section{Prelab Questions}
+
+\subsection{Bubble Sort}
+\begin{QandA}
+
+	\item How many rounds of swapping will need to sort the numbers 8,22,7,9,31,5,13 in ascending order using Bubble Sort?
+		\begin{answered}
+			8, 22, 7, 9, 31, 5, 13 - original
+
+			8, 7, 9, 22, 5, 13, 31 - round 1
+
+			7, 8, 9, 5, 13, 22, 31 - round 2
+
+			7, 8, 5, 9, 13, 22, 31 - round 3
+
+			7, 5, 8, 9, 13, 22, 31 - round 4
+
+			5, 7, 8, 9, 13, 22, 31 - Sorted
+
+			5 Rounds of swapping
+		\end{answered}
+
+	\item How many comparisons can we expect to see in the worse case scenario for Bubble Sort? Hint: make a list of numbers and attempt to sort them using Bubble Sort.
+
+		\begin{answered}
+			The worst case scenario is a list in reverse order. Each round takes $n$ comparisions. Then it takes $n$ iterations to completely sort the list making the worst case take $n^2$ comparisions.
+		\end{answered}
+\end{QandA}
+
+\subsection{Shell Sort}
+\begin{QandA}
+
+	\item The worst time complexity for Shell Sort depends on the sequence of gaps. Investigate why this is the case. How can you improve the time complexity of this sort by changing the gap size? Cite any sources you used.
+		\begin{answered}
+			Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}.
+		\end{answered}
+
+\end{QandA}
+
+\subsection{Quick Sort}
+\begin{QandA}
+	\item Quicksort, with a worse case time complexity of $O(n^2)$, doesn’t seem to live up to its name. Investigate and explain why Quicksort isn’t doomed by its worst case scenario. Make sure to cite any sources you use.
+		\begin{answered}
+			answer
+		\end{answered}
+
+
+\end{QandA}
+
+\subsection{General Sorting}
+\begin{QandA}
+	\item Explain how you plan on keeping track of the number of moves and comparisons since each sort will reside within its own file.
+		\begin{answered}
+			answer
+		\end{answered}
+
+
+\end{QandA}
+\section{Bubble Sort}
+
+Bubble Sort
+
+\section{Shell Sort}
+
+Varation of insertion sort.
+Given a gap sequnce, the Pratt sequence (also called 3-smooth), in header file
+\section{Quick Sort}
+\end{document}
