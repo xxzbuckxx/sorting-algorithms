@@ -1,6 +1,9 @@
+#include "bubble.h"
+
+#include <inttypes.h> // PRIu32
 #include <stdint.h> // extended integer library
-#include <stdio.h>
-#include <stdlib.h> // strtol
+#include <stdio.h> // Print
+#include <stdlib.h> // strtol and random
 #include <unistd.h> // For getopt()
 
 #define OPTIONS "absqQr:n:p:h" // Command options
@@ -12,6 +15,11 @@
     "Sort.\n   -q              Enable Quick Sort (Stack).\n   -Q              Enable Quick Sort "  \
     "(Queue).\n   -n length       Specify number of array elements.\n   -p elements     Specify "  \
     "number of elements to print.\n   -r seed         Specify random seed.\n"
+
+void temp(uint32_t *A, uint32_t n) {
+    A[0] = A[0];
+    n++;
+}
 
 //
 // updates option variable given program argument
@@ -53,6 +61,9 @@ int main(int argc, char **argv) {
     int opt = 0;
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
         switch (opt) {
+
+            // NOTE:  using integers is kind of ugly lowkey might change
+
         case 'a': run_all = 1; break; // all algorithms
         case 'b': execute = execute | 1; break; // bubble
         case 's': execute = execute | 2; break; // shell
@@ -72,12 +83,55 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    srandom(seed); // Set Random Seed
+
+    // Allocate size of array
+    uint32_t *arr = (uint32_t *) malloc(size * sizeof(uint32_t));
+
+    // Fill with random values
+    for (uint32_t i = 0; i < size; i++) {
+        arr[i] = random();
+    }
+
     // Execute
-    char functions[4] = { 'b', 's', 'q', 'Q' }; // Array of Function pointers
+    void (*functions[])(uint32_t *, uint32_t)
+        = { bubble_sort, temp, temp, temp }; // Array of Function pointers
     for (uint8_t i = 0; i < 4; i++) {
         if (run_all || (execute >> i & 1) == 1) {
-            printf("%c command is  enabled\n", functions[i]);
+
+            // CHECK IF SPACE FULL
+            uint32_t *arr_copy = (uint32_t *) malloc(size * sizeof(uint32_t));
+
+            for (uint32_t j = 0; j < size; j++) {
+                arr_copy[j] = arr[j];
+            }
+
+            // Print Function Name
+            // NOTE: Make function? Make array?
+            switch (i) {
+            case 0: printf("Bubble Sort\n"); break;
+            case 1: printf("Shell Sort\n"); break;
+            case 2: printf("Quick Sort (Stack)\n"); break;
+            case 3: printf("Quick Sort (Queue)\n"); break;
+            default: return 1; // Error
+            }
+
+            // Assign Random Values
+            (*functions[i])(arr_copy, size);
+
             printf("seed is %d, size is %d, number of elements is %d\n", seed, size, elements);
+
+            // Print Sorted Arary
+            for (uint8_t i = 0; i < elements && i < size; i++) {
+                printf("%13" PRIu32, arr_copy[i]);
+                if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) {
+                    printf("\n");
+                }
+            }
+
+            // Free memory
+            free(arr_copy);
+            arr_copy = NULL;
         }
     }
 

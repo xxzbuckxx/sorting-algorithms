@@ -79,7 +79,7 @@
 
     \item The worst time complexity for Shell Sort depends on the sequence of gaps. Investigate why this is the Case. How can you improve the time complexity of this sort by changing the gap size? Cite any sources you used.
         \begin{answered}
-            Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}. Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at 0, 2 is at n, 3 is at 1 and four is at n - 1. If shell sort had a gap size of two then it would have to do a bunch of comparisons to sort it. However, if the gap size starts at 1 less than the length of the array and decreases, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
+            test Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}. Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at 0, 2 is at n, 3 is at 1 and four is at n - 1. If shell sort had a gap size of two then it would have to do a bunch of comparisons to sort it. However, if the gap size starts at 1 less than the length of the array and decreases, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
         \end{answered}
 
     \end{QandA}
@@ -136,7 +136,8 @@
         \caption{Parse Program Arguments}\label{parse}
     \end{algorithm}
 
-    After the program arguments are parsed, the program then either runs all or iterates through the execute array produced in the parse. This proccess can be seen in \vref{execute}
+    After the program arguments are parsed, the program then either runs all or iterates through the execute array produced in the parse. This proccess can be seen in \vref{execute}. 
+    This uses a \href{https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/}{dynamically sorted array}.
 
     \begin{algorithm}
 		functions = \{bubble\_sort, shell\_sort, quicksort\_stack, quicksort\_heap\}\;
