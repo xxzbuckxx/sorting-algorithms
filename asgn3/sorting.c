@@ -35,19 +35,19 @@ void update_option(char *name, uint32_t *option, char *value) {
 // Main execution
 //
 int main(int argc, char **argv) {
+    // No arguments given
+    if (argc < 2) {
+        printf(HELP);
+    }
+
     // Which algorithms to run
     int run_all = 0; // False
-    uint8_t execute = 0000; // [q2, q1, shell, bubble] using bitfield
+    uint8_t execute = 0000; // [q2, q1, shell, bubble] using bit field
 
     // Set to defaults
     uint32_t seed = 13371453;
     uint32_t size = 100;
     uint32_t elements = 100;
-
-    // No arguments given
-    if (argc < 2) {
-        printf(HELP);
-    }
 
     // Parse
     int opt = 0;
