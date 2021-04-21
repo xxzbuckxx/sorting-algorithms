@@ -13,6 +13,13 @@
     "(Queue).\n   -n length       Specify number of array elements.\n   -p elements     Specify "  \
     "number of elements to print.\n   -r seed         Specify random seed.\n"
 
+//
+// updates option variable given program argument
+//
+// name: string for name of variable
+// option: address of variable being updated
+// value: string that is converted to uint32 and stored in option variable
+//
 void update_option(char *name, uint32_t *option, char *value) {
     char *remain; // Remaining characters after converted to int
     uint32_t converted_value;
@@ -24,6 +31,9 @@ void update_option(char *name, uint32_t *option, char *value) {
     }
 }
 
+//
+// Main execution
+//
 int main(int argc, char **argv) {
     // Which algorithms to run
     int run_all = 0; // False

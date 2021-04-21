@@ -9,7 +9,6 @@
 \labelformat{algocf}{\textit{alg.}\,(#1)}
 
 
-
 % Questions
 \newenvironment{QandA}{\begin{enumerate}[label=\bfseries\alph*.]\bfseries}
 {\end{enumerate}}
@@ -19,153 +18,153 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{%
-	\textbf{Assignment 3 \\ 
-	Sorting: Putting your affairs in order \\
-	\large DESIGN DOCUMENT}}
-	\author{Zack Traczyk \\ CSE13S - Spring 2021}
-	\date{Due: April 25\textsuperscript{th} at 11:59 pm}
+    \textbf{Assignment 3 \\ 
+    Sorting: Putting your affairs in order \\
+    \large DESIGN DOCUMENT} }
+    \author{Zack Traczyk \\ CSE13S - Spring 2021}
+    \date{Due: April 25\textsuperscript{th} at 11:59 pm}
 
-	\begin{document}
+    \begin{document}
 
-	\maketitle
+    \maketitle
 
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	\section{Objective}
+    \section{Objective}
 
-	The objective of this lab is to implement Bubble Sort, Shell Sort, and two Quick-sorts. In addition to these implementations a big O analysis is done.
+    The objective of this lab is to implement Bubble Sort, Shell Sort, and two Quick-sorts. In addition to these implementations a big O analysis is done.
 
-	\section{Given}
+    \section{Given}
 
-	These code snippets are given:
+    These code snippets are given:
 
-	\begin{itemize}
-		\item Stack implementation for Quicksort
-		\item Queue implementation for Quicksort
-		\item Python implementation of the algorithms (for pseudocode)
+    \begin{itemize}
+        \item Stack implementation for Quicksort
+        \item Queue implementation for Quicksort
+        \item Python implementation of the algorithms (for pseudocode)
 
-	\end{itemize}
+    \end{itemize}
 
-	\section{Prelab Questions}
+    \section{Prelab Questions}
 
-	\subsection{Bubble Sort}
-	\begin{QandA}
+    \subsection{Bubble Sort}
+    \begin{QandA}
 
-	\item How many rounds of swapping will need to sort the numbers 8,22,7,9,31,5,13 in ascending order using Bubble Sort?
-		\begin{answered}
-			8, 22, 7, 9, 31, 5, 13 - original
+    \item How many rounds of swapping will need to sort the numbers 8,22,7,9,31,5,13 in ascending order using Bubble Sort?
+        \begin{answered}
+            8, 22, 7, 9, 31, 5, 13 - original
 
-			8, 7, 9, 22, 5, 13, 31 - round 1
+            8, 7, 9, 22, 5, 13, 31 - round 1
 
-			7, 8, 9, 5, 13, 22, 31 - round 2
+            7, 8, 9, 5, 13, 22, 31 - round 2
 
-			7, 8, 5, 9, 13, 22, 31 - round 3
+            7, 8, 5, 9, 13, 22, 31 - round 3
 
-			7, 5, 8, 9, 13, 22, 31 - round 4
+            7, 5, 8, 9, 13, 22, 31 - round 4
 
-			5, 7, 8, 9, 13, 22, 31 - Sorted
+            5, 7, 8, 9, 13, 22, 31 - Sorted
 
-			5 Rounds of swapping
-		\end{answered}
+            5 Rounds of swapping
+        \end{answered}
 
-	\item How many comparisons can we expect to see in the worse Case scenario for Bubble Sort? Hint: make a list of numbers and attempt to sort them using Bubble Sort.
+    \item How many comparisons can we expect to see in the worse Case scenario for Bubble Sort? Hint: make a list of numbers and attempt to sort them using Bubble Sort.
 
-		\begin{answered}
-			The worst Case scenario is a list in reverse order. Each round takes $n$ comparisions. Then it takes $n$ iterations to completely sort the list making the worst Case take $n^2$ comparisions.
-		\end{answered}
-	\end{QandA}
+        \begin{answered}
+            The worst Case scenario is a list in reverse order. Each round takes $n$ comparisions. Then it takes $n$ iterations to completely sort the list making the worst Case take $n^2$ comparisions.
+        \end{answered}
+    \end{QandA}
 
-	\subsection{Shell Sort}
-	\begin{QandA}
+    \subsection{Shell Sort}
+    \begin{QandA}
 
-	\item The worst time complexity for Shell Sort depends on the sequence of gaps. Investigate why this is the Case. How can you improve the time complexity of this sort by changing the gap size? Cite any sources you used.
-		\begin{answered}
-			Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}. Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at 0, 2 is at n, 3 is at 1 and four is at n - 1. If shell sort had a gap size of two then it would have to do a bunch of comparisons to sort it. However, if the gap size starts at 1 less than the length of the array and decreases, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
-		\end{answered}
+    \item The worst time complexity for Shell Sort depends on the sequence of gaps. Investigate why this is the Case. How can you improve the time complexity of this sort by changing the gap size? Cite any sources you used.
+        \begin{answered}
+            Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}. Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at 0, 2 is at n, 3 is at 1 and four is at n - 1. If shell sort had a gap size of two then it would have to do a bunch of comparisons to sort it. However, if the gap size starts at 1 less than the length of the array and decreases, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
+        \end{answered}
 
-	\end{QandA}
-
-
-	\subsection{Quick Sort}
-	\begin{QandA}
-	\item Quicksort, with a worse Case time complexity of $O(n^2)$, doesn’t seem to live up to its name. Investigate and explain why Quicksort isn’t doomed by its worst Case scenario. Make sure to cite any sources you use.
-		\begin{answered}
-			Quicksort's worst Case happens when a pivot element is picked at either the end or beginning of the array. However, this does not doom Quicksort since the pivot point is decided by the programmer. In other words, $O(N^2)$ only happens because of the programmers own fault rather than intrinsic inefficiency of the algorithm. \href{https://www.baeldung.com/cs/quicksort-time-complexity-worst-Case}{Baeldung CS}
-		\end{answered}
+    \end{QandA}
 
 
-	\end{QandA}
-
-	\subsection{General Sorting}
-	\begin{QandA}
-	\item Explain how you plan on keeping track of the number of moves and comparisons since each sort will reside within its own file.
-		\begin{answered}
-			The number of moves and comparisons will be tracked by using analytics.h and global variables.
-		\end{answered}
+    \subsection{Quick Sort}
+    \begin{QandA}
+    \item Quicksort, with a worse Case time complexity of $O(n^2)$, doesn’t seem to live up to its name. Investigate and explain why Quicksort isn’t doomed by its worst Case scenario. Make sure to cite any sources you use.
+        \begin{answered}
+            Quicksort's worst Case happens when a pivot element is picked at either the end or beginning of the array. However, this does not doom Quicksort since the pivot point is decided by the programmer. In other words, $O(N^2)$ only happens because of the programmers own fault rather than intrinsic inefficiency of the algorithm. \href{https://www.baeldung.com/cs/quicksort-time-complexity-worst-Case}{Baeldung CS}
+        \end{answered}
 
 
-	\end{QandA}
+    \end{QandA}
 
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{General Sorting}
+    \begin{QandA}
+    \item Explain how you plan on keeping track of the number of moves and comparisons since each sort will reside within its own file.
+        \begin{answered}
+            The number of moves and comparisons will be tracked by using analytics.h and global variables.
+        \end{answered}
 
-	\section{Test Harness}
 
-	The test harness takes in a couple of arguments specifiying which sorts to run and for what size and how many elements. This proccess can be seen in \vref{parse}.
+    \end{QandA}
 
-	\begin{algorithm}
-		run\_all is false\;
-		execute is character array\;
-		seed = 13371453\tcc*[r]{Initalized with default seed}
-		size = 100\tcc*[r]{Initalized with default size}
-		elements = 100\tcc*[r]{Initalized with default number of elements}
-		\While{get next argument if not 0}{
-			\uIf{argument is a}{ run\_all is true }
-			\uElseIf{argument is b, s, q, or Q and run\_all is false}{ append argument to execute\; }
-			\uElseIf{argument is r}{ seed = argument value\; }
-			\uElseIf{argument is n}{ size = argument value\; }
-			\uElseIf{argument is p}{ elements = argument value\; }
-			\uElse{ print invalid command\; \Return{Error}
-			}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		}
-		\caption{Parse program arguments}\label{parse}
-	\end{algorithm}
+    \section{Test Harness}
 
-	After the program arguments are parsed, the program then either runs all or iterates through the execute array produced in the parse. This proccess can be seen in \vref{execute}
+    The test harness takes in a couple of arguments specifiying which sorts to run and for what size and how many elements. This proccess can be seen in \vref{parse}.
 
-	\begin{algorithm}
-		\eIf{run\_all}{
-			run all\;
-		}{
-			\For{character in execute}{
-				\Switch{character}{
-					\Case{b}{
-						run bubblesort\;
-					}
-					\Case{s}{
-						run shellsort\;
-					}
-					\Case{q}{
-						run quicksort1\;
-					}
-					\Case{q}{
-						run quicksort2\;
-					}
-				}
-			}
-		}
-		\caption{Run Test Harness}\label{execute}
-	\end{algorithm}
+    \begin{algorithm}
+        run\_all is false\;
+        execute is character array\;
+        seed = 13371453\tcc*[r]{Initalized with default seed}
+        size = 100\tcc*[r]{Initalized with default size}
+        elements = 100\tcc*[r]{Initalized with default number of elements}
+        \While{get next argument with }{
+            \Switch{opt}{
+                \lCase{a}{run\_all is true}
+                \lCase{r}{ seed = argument value\; }
+                \lCase{n}{ size = argument value\; }
+                \lCase{p}{ elements = argument value\; }
+                \lCase{h}{ elements = argument value\; }
+            }
 
-	\section{Bubble Sort}
+        }
+        \caption{Parse program arguments}\label{parse}
+    \end{algorithm}
 
-	Bubble Sort is fairly easy to implement
+    After the program arguments are parsed, the program then either runs all or iterates through the execute array produced in the parse. This proccess can be seen in \vref{execute}
 
-	\section{Shell Sort}
+    \begin{algorithm}
+        \eIf{run\_all}{
+            run all\;
+        }{
+            \For{character in execute}{
+                \Switch{character}{
+                    \Case{b}{
+                        run bubblesort\;
+                    }
+                    \Case{s}{
+                        run shellsort\;
+                    }
+                    \Case{q}{
+                        run quicksort1\;
+                    }
+                    \Case{q}{
+                        run quicksort2\;
+                    }
+                }
+            }
+        }
+        \caption{Run Test Harness}\label{execute}
+    \end{algorithm}
 
-	Varation of insertion sort.
-	Given a gap sequnce, the Pratt sequence (also called 3-smooth), in header file
-	\section{Quick Sort}
+    \section{Bubble Sort}
+
+    Bubble Sort is fairly easy to implement
+
+    \section{Shell Sort}
+
+    Varation of insertion sort.
+    Given a gap sequnce, the Pratt sequence (also called 3-smooth), in header file
+    \section{Quick Sort}
 
 \end{document}
 
