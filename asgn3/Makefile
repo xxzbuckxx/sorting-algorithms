@@ -1,10 +1,13 @@
 CC=clang
 CFLAGS=-Wall -Wextra -Werror -Wpedantic
 
-all: 
+all: sorting
+
+sorting:
+	$(CC) $(CFLAGS) -o sorting sorting.c
 
 clean:
-	rm -f mathlib-test a.out *.jpg *.txt
+	rm -f sorting
 format:
 	clang-format -i -style=file *.[ch]
 scan-build: clean
