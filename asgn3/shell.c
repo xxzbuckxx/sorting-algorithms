@@ -1,11 +1,12 @@
 #include "shell.h"
-#include "gaps.h"
+
 #include "analytics.h"
+#include "gaps.h"
 
 #include <stdio.h>
 
 void shell_sort(uint32_t *A, uint32_t n) {
-    
+
     for (uint32_t i = 0; i < GAPS; i++) {
 
         // Skip if gap bigger than array size
@@ -13,7 +14,7 @@ void shell_sort(uint32_t *A, uint32_t n) {
             continue;
         }
 
-        for (uint32_t j = gaps[i]; j < n; j++){
+        for (uint32_t j = gaps[i]; j < n; j++) {
             uint32_t t = j; // Store j since it will be subtracted
             uint32_t temp = A[j];
             comparisons++;

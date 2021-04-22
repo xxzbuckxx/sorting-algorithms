@@ -1,6 +1,6 @@
+#include "analytics.h"
 #include "bubble.h"
 #include "shell.h"
-#include "analytics.h"
 
 #include <inttypes.h> // PRIu32
 #include <stdint.h> // extended integer library
@@ -35,10 +35,11 @@ void temp(uint32_t *A, uint32_t n) {
 // value: string that is converted to uint32 and stored in option variable
 //
 void update_option(char *name, uint32_t *option, char *value) {
-    char *remain; // Remaining characters after converted to int
     uint32_t converted_value;
-    if ((converted_value = strtol(value, &remain, 10)) != 0) {
+    if ((converted_value = strtol(value, NULL, 10)) != 0) { // strtol converts string to integer
         *option = converted_value;
+    } else if (*value == '0') {
+        *option = 0;
     } else {
         printf(
             "ERROR - %s is not a valid argument for %s using default (%u)\n", value, name, *option);
@@ -121,7 +122,6 @@ int main(int argc, char **argv) {
                 arr_copy[j] = arr[j];
             }
 
-
             moves = 0;
             comparisons = 0;
             datastruct_size = 0;
@@ -129,7 +129,7 @@ int main(int argc, char **argv) {
             // Assign Random Values
             (*functions[i])(arr_copy, size);
 
-            printf("%d elements, %lu moves, %lu compares\n", elements, moves, comparisons);
+            printf("%d elements, %lu moves, %lu compares\n", size, moves, comparisons);
 
             // Print Sorted Arary
             for (uint32_t i = 0; i < elements && i < size; i++) {
