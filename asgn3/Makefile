@@ -3,14 +3,16 @@ CFLAGS=-Wall -Wextra -Werror -Wpedantic
 
 all: sorting
 
-sorting: sorting.o bubble_sort.o
-	$(CC) $(CFLAGS) -o sorting sorting.o bubble.o
+sorting:
+	$(CC) $(CFLAGS) -o sorting sorting.c bubble.c shell.c
 sorting.o:
 	$(CC) $(CFLAGS) -c sorting.c
-bubble_sort.o:
-	$(CC) $(CFLAGS) -c bubble.c bubble.h
+bubble.o:
+	$(CC) $(CFLAGS) -c bubble.c
+shell.o:
+	$(CC) $(CFLAGS) -c shell.c
 clean:
-	rm -f sorting *.o
+	rm -f sorting *.o *.gch
 format:
 	clang-format -i -style=file *.[ch]
 scan-build: clean
