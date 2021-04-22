@@ -45,6 +45,8 @@
 
     \end{itemize}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     \section{Prelab Questions}
 
     \subsection{Bubble Sort}
@@ -70,7 +72,7 @@
     \item How many comparisons can we expect to see in the worse Case scenario for Bubble Sort? Hint: make a list of numbers and attempt to sort them using Bubble Sort.
 
         \begin{answered}
-            The worst Case scenario is a list in reverse order. Each round takes $n$ comparisions. Then it takes $n$ iterations to completely sort the list making the worst Case take $n^2$ comparisions.
+			The worst Case scenario is a list in reverse order. Each round takes $n$ comparisions. Then it takes $n$ iterations to completely sort the list making the worst Case take $O(n^2)$ comparisions.
         \end{answered}
     \end{QandA}
 
@@ -79,7 +81,9 @@
 
     \item The worst time complexity for Shell Sort depends on the sequence of gaps. Investigate why this is the Case. How can you improve the time complexity of this sort by changing the gap size? Cite any sources you used.
         \begin{answered}
-            test Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}. Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at 0, 2 is at n, 3 is at 1 and four is at n - 1. If shell sort had a gap size of two then it would have to do a bunch of comparisons to sort it. However, if the gap size starts at 1 less than the length of the array and decreases, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
+            test Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}.
+			Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at index 0, 2 is at index n, 3 is at index 1 and four is at index n - 1. If shell sort had a gap size of two then it would be as inefficeint as bubble sort.
+			However, if the gap size starts at 1 less than the length of the array and decreases by 1, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
         \end{answered}
 
     \end{QandA}
@@ -99,7 +103,7 @@
     \begin{QandA}
     \item Explain how you plan on keeping track of the number of moves and comparisons since each sort will reside within its own file.
         \begin{answered}
-            The number of moves and comparisons will be tracked by using analytics.h and global variables.
+            The number of moves and comparisons will be tracked by using analytics.h and global variables that are initialized in the test harness.
         \end{answered}
 
 
@@ -109,15 +113,15 @@
 
     \section{Test Harness}
 
-	The test harness takes in a couple of arguments specifiying which sorts to run and for what size and how many elements. Program arguments are first parced and stored in a bit field. 1 = True and 0 = False, [Bubble, Shell, Quicksort1, Quicksort2]. This proccess can be seen in \vref{parse}.
+	The test harness takes in a couple of arguments specifying which sorts to run and for what size and how many elements. Program arguments are first parsed and stored in a bit field. 1 = True and 0 = False, [Bubble, Shell, Quicksort1, Quicksort2]. This process can be seen in \vref{parse}.
 
     \begin{algorithm}
 		\lIf{no program arguments}{\Return{error}}
         run\_all = False\;
 		execute = 0000\tcc*[r]{bit field}
-        seed = 13371453\tcc*[r]{Initalized with default seed}
-        size = 100\tcc*[r]{Initalized with default size}
-        elements = 100\tcc*[r]{Initalized with default number of elements}
+        seed = 13371453\tcc*[r]{Initialized with default seed}
+        size = 100\tcc*[r]{Initialized with default size}
+        elements = 100\tcc*[r]{Initialized with default number of elements}
         \While{get next argument with }{
             \Switch{opt}{
                 \lCase{a}{run\_all is true}
@@ -136,7 +140,7 @@
         \caption{Parse Program Arguments}\label{parse}
     \end{algorithm}
 
-    After the program arguments are parsed, the program then either runs all or iterates through the execute array produced in the parse. This proccess can be seen in \vref{execute}. 
+    After the program arguments are parsed, the program then either runs all or iterates through the execute array produced in the parse. This process can be seen in \vref{execute}. 
     This uses a \href{https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/}{dynamically sorted array}.
 
     \begin{algorithm}
