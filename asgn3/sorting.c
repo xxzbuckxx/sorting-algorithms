@@ -1,5 +1,6 @@
 #include "analytics.h"
 #include "bubble.h"
+#include "quick.h"
 #include "shell.h"
 
 #include <inttypes.h> // PRIu32
@@ -102,7 +103,7 @@ int main(int argc, char **argv) {
 
     // Execute
     void (*functions[])(uint32_t *, uint32_t)
-        = { bubble_sort, shell_sort, temp, temp }; // Array of Function pointers
+        = { bubble_sort, shell_sort, quick_sort_stack, temp }; // Array of Function pointers
 
     for (uint8_t i = 0; i < 4; i++) {
         if (run_all || (execute >> i & 1) == 1) {

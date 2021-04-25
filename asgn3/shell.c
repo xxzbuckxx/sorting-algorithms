@@ -17,13 +17,15 @@ void shell_sort(uint32_t *A, uint32_t n) {
         for (uint32_t j = gaps[i]; j < n; j++) {
             uint32_t t = j; // Store j since it will be subtracted
             uint32_t temp = A[j];
-            comparisons++;
+            moves++;
             while (t >= gaps[i] && temp < A[t - gaps[i]]) {
+                comparisons++;
                 A[t] = A[t - gaps[i]];
                 moves++;
                 t -= gaps[i];
             }
             A[t] = temp;
+            moves++;
         }
     }
 }
