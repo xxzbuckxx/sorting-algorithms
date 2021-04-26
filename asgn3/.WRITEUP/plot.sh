@@ -4,8 +4,8 @@ for i in b s q Q; do
 	typeset -i n
 	echo "" > /tmp/$i.dat
 	for ((n=1;n<=1000;++n)); do
-		Line=$(./sorting -$i -n $n | head -2 | tail -1 | cat)
-		read -a strarr <<< "$Line"
+		comparisons=$(./sorting -$i -n $n | head -2 | tail -1 | cat)
+		read -a strarr <<< "$comparisons"
 		echo "${strarr[0]} ${strarr[2]}" >> /tmp/$i.dat
 	done
 done
@@ -15,22 +15,22 @@ set terminal jpeg size 1200, 800
 set pointsize 0.2
 set title "Sorting Algorithm Comparisons vs Items"
 set xlabel "Number of Items"
-# set ylabel "Comparisons"
+set ylabel "Comparisons"
 show title
 show xlabel
 show ylabel
 
 set output "bubble.jpg"
-plot "/tmp/b.dat" with points lc rgbcolor "#724CEF" title "Bubble Sort"
+plot "/tmp/b.dat" with points lc rgbcolor "#256EFF" title "Bubble Sort"
 
 set output "shell.jpg"
-plot "/tmp/s.dat" with points lc rgbcolor "#724CEF" title "Shell Sort"
+plot "/tmp/s.dat" with points lc rgbcolor "#46237A" title "Shell Sort"
 
 set output "quick_stack.jpg"
-plot "/tmp/q.dat" with points lc rgbcolor "#724cEF" title "Quick Sort (Stack)"
+plot "/tmp/q.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)"
 
 set output "quick_queue.jpg"
-plot "/tmp/Q.dat" with points lc rgbcolor "#724cEF" title "Quick Sort (Queue)"
+plot "/tmp/Q.dat" with points lc rgbcolor "#FF495C" title "Quick Sort (Queue)"
 
 set output "comparison.jpg"
 plot "/tmp/b.dat" with points lc rgbcolor "#256EFF" title "bubble", \
