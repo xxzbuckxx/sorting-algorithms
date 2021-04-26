@@ -92,12 +92,12 @@ void quick_sort_queue(uint32_t *A, uint32_t n) {
         if (lo < p) {
             enqueue(q, lo); // store where to partition
             enqueue(q, p); // store where to partition
-    datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
+            datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
         }
         if (hi > p + 1) {
             enqueue(q, p + 1); // store where to partition
             enqueue(q, hi); // store where to partition
-    datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
+            datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
         }
     }
     return;

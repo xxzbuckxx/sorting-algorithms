@@ -38,8 +38,8 @@ void update_option(char *name, uint64_t *option, char *value) {
     } else if (*value == '0') {
         *option = 0;
     } else {
-        printf(
-            "ERROR - %s is not a valid argument for %s using default (%lu)\n\n", value, name, *option);
+        printf("ERROR - %s is not a valid argument for %s using default (%lu)\n\n", value, name,
+            *option);
     }
 }
 
@@ -128,7 +128,8 @@ int main(int argc, char **argv) {
             // Print Sorted Arary
             for (uint32_t i = 0; i < elements && i < size; i++) {
                 printf("%13" PRIu32, arr[i]);
-                if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) { // do not print if no more elements
+                if ((i + 1) % 5 == 0 || i + 1 == elements
+                    || i + 1 == size) { // do not print if no more elements
                     printf("\n");
                 }
             }
