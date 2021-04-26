@@ -52,7 +52,7 @@ void quick_sort_stack(uint32_t *A, uint32_t n) {
     Stack *s = stack_create(n + 2);
     stack_push(s, lo); // store where to partition
     stack_push(s, hi); // store where to partition
-    datastruct_size += 2; 
+    datastruct_size = stack_size(s) > datastruct_size ? stack_size(s) : datastruct_size;
     while (!stack_empty(s)) {
         stack_pop(s, &hi); // get where to partition
         stack_pop(s, &lo); // get where to partition
@@ -61,12 +61,12 @@ void quick_sort_stack(uint32_t *A, uint32_t n) {
         if (lo < p) {
             stack_push(s, lo); // store where to partition
             stack_push(s, p); // store where to partition
-            datastruct_size += 2;
+            datastruct_size = stack_size(s) > datastruct_size ? stack_size(s) : datastruct_size;
         }
         if (hi > p + 1) {
             stack_push(s, p + 1); // store where to partition
             stack_push(s, hi); // store where to partition
-            datastruct_size += 2;
+            datastruct_size = stack_size(s) > datastruct_size ? stack_size(s) : datastruct_size;
         }
     }
     return;
@@ -84,7 +84,7 @@ void quick_sort_queue(uint32_t *A, uint32_t n) {
     Queue *q = queue_create(n + 2);
     enqueue(q, lo); // store where to partition
     enqueue(q, hi); // store where to partition
-    datastruct_size += 2;
+    datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
     while (!queue_empty(q)) {
         dequeue(q, &lo); // get where to partition
         dequeue(q, &hi); // get where to partition
@@ -92,12 +92,12 @@ void quick_sort_queue(uint32_t *A, uint32_t n) {
         if (lo < p) {
             enqueue(q, lo); // store where to partition
             enqueue(q, p); // store where to partition
-            datastruct_size += 2;
+    datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
         }
         if (hi > p + 1) {
             enqueue(q, p + 1); // store where to partition
             enqueue(q, hi); // store where to partition
-            datastruct_size += 2;
+    datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
         }
     }
     return;

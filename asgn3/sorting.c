@@ -24,11 +24,6 @@ uint64_t moves; // tracks number of moves algorithm makes
 uint64_t comparisons; // tracks number of comparisons algorithm makes
 uint64_t datastruct_size; // tracks max queue/ stack size
 
-void temp(uint32_t *A, uint32_t n) {
-    A[0] = A[0];
-    n++;
-}
-
 //
 // updates option variable given program argument
 //
@@ -36,7 +31,7 @@ void temp(uint32_t *A, uint32_t n) {
 // option: address of variable being updated
 // value: string that is converted to uint32 and stored in option variable
 //
-void update_option(char *name, uint32_t *option, char *value) {
+void update_option(char *name, uint64_t *option, char *value) {
     uint32_t converted_value;
     if ((converted_value = strtol(value, NULL, 10)) != 0) { // strtol converts string to integer
         *option = converted_value;
@@ -44,7 +39,7 @@ void update_option(char *name, uint32_t *option, char *value) {
         *option = 0;
     } else {
         printf(
-            "ERROR - %s is not a valid argument for %s using default (%u)\n", value, name, *option);
+            "ERROR - %s is not a valid argument for %s using default (%lu)\n\n", value, name, *option);
     }
 }
 
@@ -62,9 +57,9 @@ int main(int argc, char **argv) {
     uint8_t execute = 0000; // [q2, q1, shell, bubble] using bit field
 
     // Set to defaults
-    uint32_t seed = 13371453;
-    uint32_t size = 100;
-    uint32_t elements = 100;
+    uint64_t seed = 13371453;
+    uint64_t size = 100;
+    uint64_t elements = 100;
 
     // Parse
     int opt = 0;
@@ -100,15 +95,15 @@ int main(int argc, char **argv) {
 
             // Print Function Name
             // NOTE: Make function? Make array?
-            switch (i) {
-            case 0: printf("Bubble Sort\n"); break;
-            case 1: printf("Shell Sort\n"); break;
-            case 2: printf("Quick Sort (Stack)\n"); break;
-            case 3: printf("Quick Sort (Queue)\n"); break;
-            default: return 1; // Error
-            }
+            /* switch (i) { */
+            /* case 0: printf("Bubble Sort\n"); break; */
+            /* case 1: printf("Shell Sort\n"); break; */
+            /* case 2: printf("Quick Sort (Stack)\n"); break; */
+            /* case 3: printf("Quick Sort (Queue)\n"); break; */
+            /* default: return 1; // Error */
+            /* } */
 
-            srandom(seed); // Set Random Seed
+            srandom(seed); // Set Random Seed (Ensures each sort gets same array)
 
             // Fill with random values
             for (uint32_t i = 0; i < size; i++) {
@@ -123,18 +118,20 @@ int main(int argc, char **argv) {
             // Call Function
             (*functions[i])(arr, size);
 
-            printf("%d elements, %lu moves, %lu compares\n", size, moves, comparisons);
-            if (i == 2 || i == 3) {
-                printf("Size: %lu\n", datastruct_size);
-            }
+            printf("%lu %lu", size, datastruct_size);
+
+            /* printf("%lu elements, %lu moves, %lu compares\n", size, moves, comparisons); */
+            /* if (i == 2 || i == 3) { */
+            /*     printf("Size: %lu\n", datastruct_size); */
+            /* } */
 
             // Print Sorted Arary
-            for (uint32_t i = 0; i < elements && i < size; i++) {
-                printf("%13" PRIu32, arr[i]);
-                if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) { // do not print if no more elements
-                    printf("\n");
-                }
-            }
+            /* for (uint32_t i = 0; i < elements && i < size; i++) { */
+            /*     printf("%13" PRIu32, arr[i]); */
+            /*     if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) { // do not print if no more elements */
+            /*         printf("\n"); */
+            /*     } */
+            /* } */
         }
     }
 
