@@ -3,7 +3,7 @@ cd ../ && make
 for i in q Q; do
 	typeset -i n
 	echo "" > /tmp/$i.size.dat
-	for ((n=1;n<=100000;++n)); do
+	for ((n=1;n<=1000;++n)); do
 		number=$(./sorting -$i -n $n)
 		echo "$number" >> /tmp/$i.size.dat
 	done
@@ -19,11 +19,11 @@ show title
 show xlabel
 show ylabel
 
-set output "quick_stack_size.jpg"
-plot "/tmp/q.size.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)"
+# set output "quick_stack_size.jpg"
+# plot "/tmp/q.size.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)"
 
-set output "quick_queue_size.jpg"
-plot "/tmp/Q.size.dat" with points lc rgbcolor "#FF495C" title "Quick Sort (Queue)"
+# set output "quick_queue_size.jpg"
+# plot "/tmp/Q.size.dat" with points lc rgbcolor "#FF495C" title "Quick Sort (Queue)"
 
 set output "quick_comparison_size.jpg"
 plot "/tmp/q.size.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)", \

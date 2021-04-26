@@ -95,13 +95,13 @@ int main(int argc, char **argv) {
 
             // Print Function Name
             // NOTE: Make function? Make array?
-            /* switch (i) { */
-            /* case 0: printf("Bubble Sort\n"); break; */
-            /* case 1: printf("Shell Sort\n"); break; */
-            /* case 2: printf("Quick Sort (Stack)\n"); break; */
-            /* case 3: printf("Quick Sort (Queue)\n"); break; */
-            /* default: return 1; // Error */
-            /* } */
+            switch (i) {
+            case 0: printf("Bubble Sort\n"); break;
+            case 1: printf("Shell Sort\n"); break;
+            case 2: printf("Quick Sort (Stack)\n"); break;
+            case 3: printf("Quick Sort (Queue)\n"); break;
+            default: return 1; // Error
+            }
 
             srandom(seed); // Set Random Seed (Ensures each sort gets same array)
 
@@ -120,18 +120,18 @@ int main(int argc, char **argv) {
 
             printf("%lu %lu", size, datastruct_size);
 
-            /* printf("%lu elements, %lu moves, %lu compares\n", size, moves, comparisons); */
-            /* if (i == 2 || i == 3) { */
-            /*     printf("Size: %lu\n", datastruct_size); */
-            /* } */
+            printf("%lu elements, %lu moves, %lu compares\n", size, moves, comparisons);
+            if (i == 2 || i == 3) {
+                printf("Size: %lu\n", datastruct_size);
+            }
 
             // Print Sorted Arary
-            /* for (uint32_t i = 0; i < elements && i < size; i++) { */
-            /*     printf("%13" PRIu32, arr[i]); */
-            /*     if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) { // do not print if no more elements */
-            /*         printf("\n"); */
-            /*     } */
-            /* } */
+            for (uint32_t i = 0; i < elements && i < size; i++) {
+                printf("%13" PRIu32, arr[i]);
+                if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) { // do not print if no more elements
+                    printf("\n");
+                }
+            }
         }
     }
 
