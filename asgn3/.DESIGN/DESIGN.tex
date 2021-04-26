@@ -32,7 +32,7 @@
 
     \section{Objective}
 
-    The objective of this lab is to implement Bubble Sort, Shell Sort, and two Quick-sorts. In addition to these implementations a big O analysis is done.
+    The objective of this lab is to implement Bubble Sort, Shell Sort, and two Quicksorts. In addition to these implementations a big O analysis is done.
 
     \section{Given}
 
@@ -54,19 +54,20 @@
 
     \item How many rounds of swapping will need to sort the numbers 8,22,7,9,31,5,13 in ascending order using Bubble Sort?
         \begin{answered}
-            8, 22, 7, 9, 31, 5, 13 - original
+			\vskip 0.2in
+			\centerline{8, 22, 7, 9, 31, 5, 13 - original}
 
-            8, 7, 9, 22, 5, 13, 31 - round 1
+			\centerline{8, 7, 9, 22, 5, 13, 31 - round 1}
 
-            7, 8, 9, 5, 13, 22, 31 - round 2
+			\centerline{7, 8, 9, 5, 13, 22, 31 - round 2}
 
-            7, 8, 5, 9, 13, 22, 31 - round 3
+			\centerline{7, 8, 5, 9, 13, 22, 31 - round 3}
 
-            7, 5, 8, 9, 13, 22, 31 - round 4
+			\centerline{7, 5, 8, 9, 13, 22, 31 - round 4}
 
-            5, 7, 8, 9, 13, 22, 31 - Sorted
+			\centerline{5, 7, 8, 9, 13, 22, 31 - Sorted}
 
-            5 Rounds of swapping
+            5 Rounds of swapping where required to sort the numbers.
         \end{answered}
 
     \item How many comparisons can we expect to see in the worse Case scenario for Bubble Sort? Hint: make a list of numbers and attempt to sort them using Bubble Sort.
@@ -81,19 +82,24 @@
 
     \item The worst time complexity for Shell Sort depends on the sequence of gaps. Investigate why this is the Case. How can you improve the time complexity of this sort by changing the gap size? Cite any sources you used.
         \begin{answered}
-            test Watched \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations}.
-			Shell sort's efficiency is dependent on the gaps used to sort. Imagine an array where the 1 is at index 0, 2 is at index n, 3 is at index 1 and four is at index n - 1. If shell sort had a gap size of two then it would be as inefficeint as bubble sort.
-			However, if the gap size starts at 1 less than the length of the array and decreases by 1, then the algorithm would be super efficient: \href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope}.
+            After watching \href{https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s}{sorting visualizations} shell sort complexity made more sense.
+			Shell sort's efficiency is dependent on the gaps used to sort.
+			Imagine an array where the 1 is at index 0, 2 is at index n, 3 is at index 1 and four is at index n - 1. If shell sort had a gap size of two then it would be as inefficient as bubble sort.
+			However, if the gap size starts at 1 less than the length of the array and decreases by 1, then the algorithm would be super efficient.
+			\href{https://www.codesdope.com/blog/article/shell-sort/}{Codesdope} helped answer this question.
         \end{answered}
 
     \end{QandA}
 
 
-    \subsection{Quick Sort}
+    \subsection{Quicksort}
     \begin{QandA}
     \item Quicksort, with a worse Case time complexity of $O(n^2)$, doesn’t seem to live up to its name. Investigate and explain why Quicksort isn’t doomed by its worst Case scenario. Make sure to cite any sources you use.
         \begin{answered}
-            Quicksort's worst Case happens when a pivot element is picked at either the end or beginning of the array. However, this does not doom Quicksort since the pivot point is decided by the programmer. In other words, $O(N^2)$ only happens because of the programmers own fault rather than intrinsic inefficiency of the algorithm. \href{https://www.baeldung.com/cs/quicksort-time-complexity-worst-Case}{Baeldung CS}
+            Quicksort's worst Case happens when a pivot element is picked at either the end or beginning of the array.
+			However, this does not doom Quicksort since the pivot point is decided by the programmer.
+			In other words, $O(n^2)$ only happens because of the programmers own fault rather than intrinsic inefficiency of the algorithm.
+			\href{https://www.baeldung.com/cs/quicksort-time-complexity-worst-Case}{Baeldung CS} helped answer this question.
         \end{answered}
 
 
@@ -103,7 +109,7 @@
     \begin{QandA}
     \item Explain how you plan on keeping track of the number of moves and comparisons since each sort will reside within its own file.
         \begin{answered}
-            The number of moves and comparisons will be tracked by using analytics.h and global variables that are initialized in the test harness.
+            The number of moves and comparisons will be tracked by using global variables that are defined in a header file and initialized in the test harness.
         \end{answered}
 
 
@@ -140,36 +146,41 @@
         \caption{Parse Program Arguments}\label{parse}
     \end{algorithm}
 
-    After the program arguments are parsed, the program then either runs all or iterates through the execute array produced in the parse. This process can be seen in \vref{execute}. 
-    This uses a \href{https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/}{dynamically sorted array}.
+    After the program arguments are parsed, the program then either runs all or iterates through the execute bitfield produced in the parse.
+	This process can be seen in \vref{execute}. 
+    This uses a \href{https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/}{dynamically sorted array} that is defined before execution.
 
     \begin{algorithm}
 		functions = \{bubble\_sort, shell\_sort, quicksort\_stack, quicksort\_heap\}\;
 		\For{i from 0 to 4}{
-			\If{run\_all or execute bit [i] is True}{
-				functions[i](seed, size, elements)\;
+			reset seed\;
+			populate array with random values until given size\;
+			\If{run\_all or execute bit i is True}{
+				functions[i](array, size)\;
 			}
+			print analytics and array elements up to elements variable\;
 		}
 
         \caption{Execute Algorithms}\label{execute}
     \end{algorithm}
 
-    \section{Bubble Sort}
+    \section{Algorithm Implementation}
 
-    Bubble Sort is fairly easy to implement given the python pseudocode.
-
-    \section{Shell Sort}
-
-    Varation of insertion sort.
-    Given a gap sequnce, the Pratt sequence (also called 3-smooth), in header file
-
-    \section{Quick Sort}
-
-	Quicksort is implemented using the pseudocode and the the given stack and queue implenetations.
+	Given the python pseudocode in the assignment document, the four sorting algorithms were pretty trivial to implement.
+	The only added component is the metrics for comparisons, swaps, and data structure size if using Quick Sort.
+	A header file, analytics.h, was created to make global variables for these values,
+	then they were called across the various algorithms and referenced in the main sorting.c.
 
 	\subsection{Stack}
 
+	The stack for the Quicksort stack implementation was put together using Professor Long's code as well as teaching assistant Eugene Chou's.
+
 	\subsection{Queue}
+
+	The queue for the Quicksort queue implementation was adapted from the stack code since the variations are slight.
+	The tail and head are kept track of instead of just top index.
+	Items are appended to the head index and removed from the tail.
+	The items wrap around from n - 1 to 0 to reduce the need for allocating space when empty memory exists from the popped stack elements.
 
 \end{document}
 
