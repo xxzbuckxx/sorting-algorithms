@@ -4,8 +4,6 @@
 #include "queue.h"
 #include "stack.h"
 
-#include <stdio.h>
-
 //
 // Sorts items by creating a partition (index lo to index hi of a given array)
 // Sorts  by putting smaller values to the left of the pivot value and higher
@@ -45,26 +43,30 @@ int64_t partition(uint32_t *A, uint32_t lo, uint32_t hi) {
 //
 // Quick sort that uses a partition to sort and a stack to track the partition indices (lo and hi).
 //
-// A: array to partition and sort 
+// A: array to partition and sort
 // n: length of array to sort
 //
 void quick_sort_stack(uint32_t *A, uint32_t n) {
     int64_t lo = 0;
     int64_t hi = n - 1;
     Stack *s = stack_create(n + 2);
-    stack_push(s, lo);
-    stack_push(s, hi);
+    stack_push(s, lo); // store where to partition
+    stack_push(s, hi); // store where to partition
+    datastruct_size += 2; 
     while (!stack_empty(s)) {
-        stack_pop(s, &hi);
-        stack_pop(s, &lo);
+        stack_pop(s, &hi); // get where to partition
+        stack_pop(s, &lo); // get where to partition
+
         int64_t p = partition(A, lo, hi);
         if (lo < p) {
-            stack_push(s, lo);
-            stack_push(s, p);
+            stack_push(s, lo); // store where to partition
+            stack_push(s, p); // store where to partition
+            datastruct_size += 2;
         }
         if (hi > p + 1) {
-            stack_push(s, p + 1);
-            stack_push(s, hi);
+            stack_push(s, p + 1); // store where to partition
+            stack_push(s, hi); // store where to partition
+            datastruct_size += 2;
         }
     }
     return;
@@ -80,19 +82,22 @@ void quick_sort_queue(uint32_t *A, uint32_t n) {
     int64_t lo = 0;
     int64_t hi = n - 1;
     Queue *q = queue_create(n + 2);
-    enqueue(q, lo);
-    enqueue(q, hi);
+    enqueue(q, lo); // store where to partition
+    enqueue(q, hi); // store where to partition
+    datastruct_size += 2;
     while (!queue_empty(q)) {
-        dequeue(q, &lo);
-        dequeue(q, &hi);
+        dequeue(q, &lo); // get where to partition
+        dequeue(q, &hi); // get where to partition
         uint32_t p = partition(A, lo, hi);
         if (lo < p) {
-            enqueue(q, lo);
-            enqueue(q, p);
+            enqueue(q, lo); // store where to partition
+            enqueue(q, p); // store where to partition
+            datastruct_size += 2;
         }
         if (hi > p + 1) {
-            enqueue(q, p + 1);
-            enqueue(q, hi);
+            enqueue(q, p + 1); // store where to partition
+            enqueue(q, hi); // store where to partition
+            datastruct_size += 2;
         }
     }
     return;

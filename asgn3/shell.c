@@ -28,7 +28,7 @@ void shell_sort(uint32_t *A, uint32_t n) {
             }
             while (t >= gaps[i] && temp < A[t - gaps[i]]) {
                 comparisons++;
-                A[t] = A[t - gaps[i]];
+                A[t] = A[t - gaps[i]]; // Insert value
                 moves++;
                 t -= gaps[i];
             }

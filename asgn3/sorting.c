@@ -10,6 +10,7 @@
 #include <unistd.h> // For getopt()
 
 #define OPTIONS "absqQr:n:p:h" // Command options
+
 #define HELP                                                                                       \
     "Select at least one sort to perform.\nSYNOPSIS\n   A collection of comparison-based sorting " \
     "algorithms.\n\nUSAGE\n   ./sorting [-habsqQo] [-n length] [-p elements] [-r "                 \
@@ -19,9 +20,9 @@
     "(Queue).\n   -n length       Specify number of array elements.\n   -p elements     Specify "  \
     "number of elements to print.\n   -r seed         Specify random seed.\n"
 
-uint64_t moves;
-uint64_t comparisons;
-uint64_t datastruct_size;
+uint64_t moves; // tracks number of moves algorithm makes
+uint64_t comparisons; // tracks number of comparisons algorithm makes
+uint64_t datastruct_size; // tracks max queue/ stack size
 
 void temp(uint32_t *A, uint32_t n) {
     A[0] = A[0];
@@ -83,23 +84,12 @@ int main(int argc, char **argv) {
         }
     }
 
-    // No algorithm picked
-    if (!execute && !run_all) {
+    if (!execute && !run_all) { // No algorithm picked
         printf("ERROR - Please pick a sorting algorithm");
         return 1;
     }
 
-    srandom(seed); // Set Random Seed
-
-    // Allocate size of array
-    uint32_t *arr = (uint32_t *) malloc(size * sizeof(uint32_t));
-    // CHECK IF SPACE FULL
-    uint32_t *arr_copy = (uint32_t *) malloc(size * sizeof(uint32_t));
-
-    // Fill with random values
-    for (uint32_t i = 0; i < size; i++) {
-        arr[i] = random();
-    }
+    uint32_t *arr = (uint32_t *) malloc(size * sizeof(uint32_t)); // Allocate size of array
 
     // Execute
     void (*functions[])(uint32_t *, uint32_t) = { bubble_sort, shell_sort, quick_sort_stack,
@@ -118,24 +108,30 @@ int main(int argc, char **argv) {
             default: return 1; // Error
             }
 
-            // Copy initial allocation
-            for (uint32_t j = 0; j < size; j++) {
-                arr_copy[j] = arr[j];
+            srandom(seed); // Set Random Seed
+
+            // Fill with random values
+            for (uint32_t i = 0; i < size; i++) {
+                arr[i] = random();
             }
 
+            // Tracks analytics of algorithm
             moves = 0;
             comparisons = 0;
             datastruct_size = 0;
 
-            // Assign Random Values
-            (*functions[i])(arr_copy, size);
+            // Call Function
+            (*functions[i])(arr, size);
 
             printf("%d elements, %lu moves, %lu compares\n", size, moves, comparisons);
+            if (i == 2 || i == 3) {
+                printf("Size: %lu\n", datastruct_size);
+            }
 
             // Print Sorted Arary
             for (uint32_t i = 0; i < elements && i < size; i++) {
-                printf("%13" PRIu32, arr_copy[i]);
-                if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) {
+                printf("%13" PRIu32, arr[i]);
+                if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) { // do not print if no more elements
                     printf("\n");
                 }
             }
@@ -144,7 +140,6 @@ int main(int argc, char **argv) {
 
     // Free memory
     free(arr);
-    free(arr_copy);
 
     return 0;
 }

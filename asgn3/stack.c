@@ -17,7 +17,7 @@ struct Stack {
 };
 
 //
-// Creates a stack 
+// Creates a stack
 //
 // capacity: max size of the stack
 // Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
@@ -47,7 +47,6 @@ void stack_delete(Stack **s) {
         free((*s)->items);
         free(*s);
         *s = NULL; // ensure pointer is not pointing to memory no longer used
-
     }
     return;
 }
@@ -78,8 +77,9 @@ bool stack_full(Stack *s) {
 //
 // s: the stack to return the size of
 // Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+//
 uint32_t stack_size(Stack *s) {
-    return (s && s->items) ? s->top : -1; //if stack exists and has items
+    return (s && s->items) ? s->top : (uint32_t) -1; //if stack exists and has items
 }
 
 //
@@ -88,6 +88,7 @@ uint32_t stack_size(Stack *s) {
 // s: stack to push item to
 // x: item to add to stack
 // Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+//
 bool stack_push(Stack *s, int64_t x) {
     if (stack_full(s)) { // can not add to a full stack
         return false;
