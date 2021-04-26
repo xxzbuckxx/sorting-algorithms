@@ -1,10 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage{charter} % font
 \usepackage[margin=1in]{geometry} % margin
-\usepackage{varioref}
 \usepackage{hyperref} % hyperlinks
 \usepackage{enumitem} % Enumeration
-\graphicspath{ {.} } % images
+\usepackage{graphicx} % images
+\graphicspath{ {.} } 
 
 \usepackage[lined,dotocloa]{algorithm2e} % Pseudocode
 \labelformat{algocf}{\textit{alg.}\,(#1)}
@@ -27,20 +27,40 @@
 	\maketitle
 
 	\section{Time Complexity}
+
+	\subsection{Bubble Sort}
+
+	For larger arrays, Bubble Sort had the worst time complexity out of all the sorts implemented.
+	Figure \ref{bubble} displays the relationship between the amount of comparisons the algorithm performs for the number of items of the given array.
+	As shown, Bubble Sort has a worst case complexity of $O(n^2)$ as it has two nested for loops that usually iterate through the entirety of the array.
 	
-	\includegraphics{shell}
+	A reversed array requires the most amount of comparisons in bubble sort.
 
-	\subsection{Reverse Order}
+	The corresponding $C$ value for bubble sort is 
 
-	\subsection{Small Number of Elements}
+		\includegraphics[width=\textwidth]{bubble} \label{bubble}
 
-	\subsection{Large Number of Elements}
+	\subsection{Shell Sort}
 
-	\section{What i learend}
+	Shell sort preformed much better than Bubble Sort. Figure \ref{bubble}.
 
-	\section{how i experimented}
+	Reverse
 
-	\section{Size of Stack and Queue in relation to input}
+		\includegraphics[width=\textwidth]{shell} \label{shell}
+
+	\subsection{Quick Sort}
+
+	Shell sort preformed much better than Bubble Sort. Figure \ref{stack}. Figure \ref{queue}
+
+		\includegraphics[width=\textwidth]{quick_stack} \label{stack}
+
+		\includegraphics[width=\textwidth]{quick_stack} \label{queue}
+
+	More graphs
+
+	\section{What I Learned}
+
+	Picking the right algorithm is crucial for accomplishing fast code. Furthermore, right does not necessarily mean smallest Big-$O$ or even the fastest. It is about considering memory usage, and size of array.
 
 	\end{document}
 
