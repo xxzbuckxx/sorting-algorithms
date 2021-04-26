@@ -20,12 +20,12 @@ show xlabel
 show ylabel
 
 set output "quick_stack_size.jpg"
-plot "/tmp/Q.size.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)"
+plot "/tmp/q.size.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)"
 
 set output "quick_queue_size.jpg"
 plot "/tmp/Q.size.dat" with points lc rgbcolor "#FF495C" title "Quick Sort (Queue)"
 
 set output "quick_comparison_size.jpg"
-plot "/tmp/Q.size.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)", \
+plot "/tmp/q.size.dat" with points lc rgbcolor "#3DDC97" title "Quick Sort (Stack)", \
 	"/tmp/Q.size.dat" with points lc rgbcolor "#FF495C" title "Quick Sort (Queue)"
 XX
