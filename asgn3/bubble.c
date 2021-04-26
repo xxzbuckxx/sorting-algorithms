@@ -2,8 +2,6 @@
 
 #include "analytics.h"
 
-#include <stdio.h>
-
 // Import Tracking variables
 extern uint64_t moves;
 extern uint64_t comparisons;

@@ -3,8 +3,6 @@
 #include "analytics.h"
 #include "gaps.h"
 
-#include <stdio.h>
-
 //
 // sorts an array using shell sort with a Pratt sequence
 //
