@@ -1,20 +1,26 @@
+# Makefile compiling (lines 2-16) adapted from Proffessor Long https://piazza.com/class/kmfs2bmdr9syz?cid=63
+EXEC = sorting
+
+SOURCES = sorting.c bubble.c shell.c quick.c stack.c  queue.c
+OBJECTS = $(SOURCES:%.c=%.o)
+
 CC=clang
 CFLAGS=-Wall -Wextra -Werror -Wpedantic
 
-all: sorting
+all: $(EXEC)
 
-sorting:
-	$(CC) $(CFLAGS) -o sorting sorting.c bubble.c shell.c quick.c stack.c
-sorting.o:
-	$(CC) $(CFLAGS) -c sorting.c
-bubble.o:
-	$(CC) $(CFLAGS) -c bubble.c
-shell.o:
-	$(CC) $(CFLAGS) -c shell.c
+$(EXEC): $(OBJECTS)
+	$(CC) -o $@ $^ $(LFLAGS)
+
+%.o: %.clean
+	$(CC) $(CFLAGS) -c $<
+
 clean:
-	rm -f sorting *.o *.gch valgrind-out.txt
+	rm -f sorting *.o valgrind-out.txt
+
 format:
 	clang-format -i -style=file *.[ch]
+
 leak-check: clean all
 	valgrind --leak-check=full\
          --show-leak-kinds=all\
@@ -22,5 +28,7 @@ leak-check: clean all
          --verbose\
          --log-file=valgrind-out.txt\
          ./sorting -sb -n 200
+	vim valgrind-out.txt
+
 scan-build: clean
 	scan-build make

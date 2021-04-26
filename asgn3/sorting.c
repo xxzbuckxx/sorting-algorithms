@@ -102,8 +102,8 @@ int main(int argc, char **argv) {
     }
 
     // Execute
-    void (*functions[])(uint32_t *, uint32_t)
-        = { bubble_sort, shell_sort, quick_sort_stack, temp }; // Array of Function pointers
+    void (*functions[])(uint32_t *, uint32_t) = { bubble_sort, shell_sort, quick_sort_stack,
+        quick_sort_queue }; // Array of Function pointers
 
     for (uint8_t i = 0; i < 4; i++) {
         if (run_all || (execute >> i & 1) == 1) {
