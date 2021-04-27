@@ -117,7 +117,11 @@ bool stack_pop(Stack *s, int64_t *x) {
 // Prints elements of the stack
 //
 // s: the stack to print
+<<<<<<< HEAD
 // Function taken from teaching assistant Eugene  (Lab Section 4/22/21)
+=======
+// Code taken from teaching assistant Eugene Chou (Lab Section 4/22/21)
+>>>>>>> fd68f9c7158fba2487b05c0a384c4a228bb0fec3
 //
 void stack_print(Stack *s) {
     printf("[");
