@@ -37,6 +37,14 @@ Python pseudocode for the sorting algorithms
 
 This is the program that is compiled and executed
 
+#### set.c
+
+Set datatype implementation
+
+#### set.h
+
+Header file for set datatype
+
 #### analytics.h
 
 Global variable definitions for `moves`, `comparisons`, and `datastruct_size`

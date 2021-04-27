@@ -41,6 +41,7 @@
     \begin{itemize}
         \item Stack implementation for Quicksort
         \item Python implementation of the algorithms (for pseudocode)
+		\item Set implementation
     \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -122,17 +123,17 @@
     \begin{algorithm}
 		\lIf{no program arguments}{\Return{error}}
         run\_all = False\;
-		execute = 0000\tcc*[r]{bit field}
+		execute = 0000\tcc*[r]{set}
         seed = 13371453\tcc*[r]{Initialized with default seed}
         size = 100\tcc*[r]{Initialized with default size}
         elements = 100\tcc*[r]{Initialized with default number of elements}
         \While{get next argument with }{
             \Switch{opt}{
                 \lCase{a}{run\_all is true}
-				\lCase{b}{execute = execute bitwise or 0001}
-				\lCase{s}{execute = execute bitwise or 0010}
-				\lCase{q}{execute = execute bitwise or 0100}
-				\lCase{Q}{execute = execute bitwise or 1000}
+				\lCase{b}{execute[0] = true}
+				\lCase{s}{execute[1] = true}
+				\lCase{q}{execute[2] = true}
+				\lCase{Q}{execute[3]}
                 \lCase{r}{seed = argument value}
                 \lCase{n}{size = argument value}
                 \lCase{p}{elements = argument value}
@@ -144,7 +145,7 @@
         \caption{Parse Program Arguments}\label{parse}
     \end{algorithm}
 
-    After the program arguments are parsed, the program then either runs all or iterates through the execute bitfield produced in the parse.
+    After the program arguments are parsed, the program then either runs all or iterates through the execute set produced in the parse.
 	This process can be seen in \vref{execute}. 
     This uses a \href{https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/}{dynamically sorted array} that is defined before execution.
 
@@ -153,7 +154,7 @@
 		\For{i from 0 to 4}{
 			reset seed\;
 			populate array with random values until given size\;
-			\If{run\_all or execute bit i is True}{
+			\If{run\_all or execute[i] is True}{
 				functions[i](array, size)\;
 			}
 			print analytics and array elements up to elements variable\;

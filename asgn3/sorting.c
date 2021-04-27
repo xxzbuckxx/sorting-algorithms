@@ -1,6 +1,7 @@
 #include "analytics.h"
 #include "bubble.h"
 #include "quick.h"
+#include "set.h"
 #include "shell.h"
 
 #include <inttypes.h> // PRIu32
@@ -54,7 +55,7 @@ int main(int argc, char **argv) {
 
     // Which algorithms to run
     int run_all = 0; // False
-    uint8_t execute = 0000; // [q2, q1, shell, bubble] using bit field
+    Set execute = set_empty(); // (q2, q1, shell, bubble)
 
     // Set to defaults
     uint64_t seed = 13371453;
@@ -68,10 +69,10 @@ int main(int argc, char **argv) {
         switch (opt) {
         // NOTE:  using integers is kind of ugly lowkey might change
         case 'a': run_all = 1; break; // all algorithms
-        case 'b': execute = execute | 1; break; // bubble
-        case 's': execute = execute | 2; break; // shell
-        case 'q': execute = execute | 4; break; // q1
-        case 'Q': execute = execute | 8; break; // q2
+        case 'b': execute = set_insert(execute, 0); break; // bubble
+        case 's': execute = set_insert(execute, 1); break; // shell
+        case 'q': execute = set_insert(execute, 2); break; // q1
+        case 'Q': execute = set_insert(execute, 3); break; // q2
         case 'r': update_option("seed", &seed, optarg); break; // seed option
         case 'n': update_option("size", &size, optarg); break; // size option
         case 'p': update_option("elements", &elements, optarg); break; // elements option
@@ -98,7 +99,7 @@ int main(int argc, char **argv) {
         quick_sort_queue }; // Array of Function pointers
 
     for (uint8_t i = 0; i < 4; i++) {
-        if (run_all || (execute >> i & 1) == 1) {
+        if (run_all || set_member(execute, i)) {
 
             // Print Function Name
             switch (i) {

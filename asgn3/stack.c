@@ -8,7 +8,7 @@
 //
 // Structure for defining stack data structure
 //
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 //
 struct Stack {
     uint32_t top; // index of the next empty slot.
@@ -20,7 +20,7 @@ struct Stack {
 // Creates a stack
 //
 // capacity: max size of the stack
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 //
 Stack *stack_create(uint32_t capacity) {
     Stack *s = (Stack *) malloc(sizeof(Stack)); // allocate memory for stack structure
@@ -40,7 +40,7 @@ Stack *stack_create(uint32_t capacity) {
 // Deletes a stack
 //
 // s: a stack to delete
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 //
 void stack_delete(Stack **s) {
     if (*s && (*s)->items) { // if stack exists and has items
@@ -55,7 +55,7 @@ void stack_delete(Stack **s) {
 // Returns if stack is empty or not
 //
 // s: a stack to check
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 //
 bool stack_empty(Stack *s) {
     return s->top == 0;
@@ -66,7 +66,7 @@ bool stack_empty(Stack *s) {
 //
 // s: stack to test
 //
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 //
 bool stack_full(Stack *s) {
     return s->top == s->capacity;
@@ -76,7 +76,7 @@ bool stack_full(Stack *s) {
 // Returns size of the stack
 //
 // s: the stack to return the size of
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 //
 uint32_t stack_size(Stack *s) {
     return (s && s->items) ? s->top : (uint32_t) -1; //if stack exists and has items
@@ -87,7 +87,7 @@ uint32_t stack_size(Stack *s) {
 //
 // s: stack to push item to
 // x: item to add to stack
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 //
 bool stack_push(Stack *s, int64_t x) {
     if (stack_full(s)) { // can not add to a full stack
@@ -103,7 +103,7 @@ bool stack_push(Stack *s, int64_t x) {
 //
 // s: the stack to pop from
 // x: the address to store the popped value
-// Code taken from Professor Darrell Long (Stacks and Queues 4/19/21)
+// Function taken from Professor Darrell Long (Stacks and Queues 4/19/21)
 bool stack_pop(Stack *s, int64_t *x) {
     if (stack_empty(s)) { // can not pop from an empty stack
         return false;
@@ -117,7 +117,7 @@ bool stack_pop(Stack *s, int64_t *x) {
 // Prints elements of the stack
 //
 // s: the stack to print
-// Code taken from teaching assistant Eugene  (Lab Section 4/22/21)
+// Function taken from teaching assistant Eugene  (Lab Section 4/22/21)
 //
 void stack_print(Stack *s) {
     printf("[");

@@ -1,7 +1,7 @@
 # Makefile compiling (lines 2-16) adapted from Proffessor Long https://piazza.com/class/kmfs2bmdr9syz?cid=63
 EXEC = sorting
 
-SOURCES = sorting.c bubble.c shell.c quick.c stack.c  queue.c
+SOURCES = sorting.c bubble.c shell.c quick.c stack.c queue.c set.c
 OBJECTS = $(SOURCES:%.c=%.o)
 
 CC=clang
