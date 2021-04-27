@@ -1,11 +1,6 @@
 # Assignment 3 - Sorting: Putting your affairs in order
 
-A program (sorting) that sorts an array using bubble sort, shell sort, and quick sort (using a stack and using a queue).
-
-The program asks for two positive integers:
-
-1. random seed
-2. number of players
+A program (sorting) that sorts an array using Bubble Sort, Shell Sort, and 2 versions of Quicksort (using a stack and using a queue).
 
 # How to Build
 
@@ -30,7 +25,9 @@ Run the compiled binary with `./sorting`
 
 This makefile compiles the program.
 
-To remove binaries use `make clean`
+* remove binaries using `make clean`
+* run a memory leak test using `make leak-check`
+* format code using `make format`
 
 #### sorts.py
 
@@ -38,7 +35,7 @@ Python pseudocode for the sorting algorithms
 
 #### sorting.c
 
-This is the program that is compiled and executed. 
+This is the program that is compiled and executed
 
 #### analytics.h
 
@@ -62,11 +59,13 @@ Header file defining `shell_sort`
 
 #### gaps.h
 
-Header file defining an array containing the amount of Gaps in ______ implementation as well as a ?macro? Defining the length of the array
+Header file defining an array containing the amount of Gaps in the Pratt sequence implementation 
 
 #### quick.c
 
-Quicksort implementations (`quick_sort_stack` for algorithm using a stack and `quick_sort_queue` for implementation using a queue)
+Quicksort implementations:
+* `quick_sort_stack` for algorithm using a stack
+* `quick_sort_queue` for implementation using a queue
 
 #### stack.c
 
@@ -90,13 +89,20 @@ This document details how the program was designed. This includes:
 
 * The objective of the assignment
 * What was given in the lab doc
-* An explanation of data types used
-* An explanation of my general approach
-* Pseudocode
+* Prelab questions
+* Pseudocode for the test harness
+* General explanation for code implementation
 
 #### WRITEUP.pdf
 
 Analysis of sorting algorithm efficiency
+
+#### HIDDEN FOLDERS
+
+.DESIGN contains the LaTeX document for the design document
+
+.WRITEUP contains the LaTeX document for the writeup as well as the graph jpgs
+and bash scripts used to produce them
  
 # Resources
 
@@ -106,6 +112,8 @@ Analysis of sorting algorithm efficiency
     * https://www.codesdope.com/blog/article/shell-sort/
 * Shell sorting visualization:
     * https://www.youtube.com/watch?v=NYWEM7H3iYc\&t=269s
+* Reverse order visualizations: 
+	* https://www.toptal.com/developers/sorting-algorithms/reversed-initial-order	
 * Dynamic memory allocation:
     * https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/
 * extern:

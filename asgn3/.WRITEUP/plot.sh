@@ -19,9 +19,15 @@ set ylabel "Comparisons"
 show title
 show xlabel
 show ylabel
+set xrange [0:1000]
 
 set output "bubble.jpg"
+# set key top left Left reverse
+# f(x) = x**2 - x
 plot "/tmp/b.dat" with points lc rgbcolor "#256EFF" title "Bubble Sort"
+	 # f(x) with lines lc rgbcolor "#CCCC00" title "x^2 - x"
+
+set key top right
 
 set output "shell.jpg"
 plot "/tmp/s.dat" with points lc rgbcolor "#46237A" title "Shell Sort"
@@ -37,4 +43,10 @@ plot "/tmp/b.dat" with points lc rgbcolor "#256EFF" title "bubble", \
 	"/tmp/s.dat" with points lc rgbcolor "#46237A" title "shell", \
 	"/tmp/q.dat" with points lc rgbcolor "#3DDC97" title "quick stack", \
 	"/tmp/Q.dat" with points lc rgbcolor "#FF495C" title "quick queue"
+
+# set output "comparison_small.jpg"
+# plot "/tmp/b_small.dat" with linespoints lc rgbcolor "#256EFF" title "bubble", \
+# 	"/tmp/s_small.dat" with linespoints lc rgbcolor "#46237A" title "shell", \
+# 	"/tmp/q_small.dat" with linespoints lc rgbcolor "#3DDC97" title "quick stack", \
+# 	"/tmp/Q_small.dat" with linespoints lc rgbcolor "#FF495C" title "quick queue"
 XX

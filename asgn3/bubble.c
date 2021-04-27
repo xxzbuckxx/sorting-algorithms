@@ -6,6 +6,12 @@
 extern uint64_t moves;
 extern uint64_t comparisons;
 
+//
+// sorts an array using Bubble Sort
+//
+// A: array to sort
+// n: length of array to sort
+//
 void bubble_sort(uint32_t *A, uint32_t n) {
     uint8_t swapped = 1; // True
     while (swapped) {

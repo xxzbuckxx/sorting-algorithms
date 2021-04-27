@@ -50,6 +50,9 @@ void quick_sort_stack(uint32_t *A, uint32_t n) {
     int64_t lo = 0;
     int64_t hi = n - 1;
     Stack *s = stack_create(n + 2);
+    if (!s) { // if no room in memory
+        return;
+    }
     stack_push(s, lo); // store where to partition
     stack_push(s, hi); // store where to partition
     datastruct_size = stack_size(s) > datastruct_size ? stack_size(s) : datastruct_size;
@@ -82,6 +85,9 @@ void quick_sort_queue(uint32_t *A, uint32_t n) {
     int64_t lo = 0;
     int64_t hi = n - 1;
     Queue *q = queue_create(n + 2);
+    if (!q) { // if no room in memory
+        return;
+    }
     enqueue(q, lo); // store where to partition
     enqueue(q, hi); // store where to partition
     datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;

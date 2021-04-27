@@ -61,7 +61,8 @@ int main(int argc, char **argv) {
     uint64_t size = 100;
     uint64_t elements = 100;
 
-    // Parse
+    //-------- Parse --------//
+
     int opt = 0;
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
         switch (opt) {
@@ -86,7 +87,13 @@ int main(int argc, char **argv) {
 
     uint32_t *arr = (uint32_t *) malloc(size * sizeof(uint32_t)); // Allocate size of array
 
-    // Execute
+    // If failed to allocate return error
+    if (arr == 0) {
+        return 1;
+    }
+
+    //-------- Execute --------//
+
     void (*functions[])(uint32_t *, uint32_t) = { bubble_sort, shell_sort, quick_sort_stack,
         quick_sort_queue }; // Array of Function pointers
 
@@ -94,7 +101,6 @@ int main(int argc, char **argv) {
         if (run_all || (execute >> i & 1) == 1) {
 
             // Print Function Name
-            // NOTE: Make function? Make array?
             switch (i) {
             case 0: printf("Bubble Sort\n"); break;
             case 1: printf("Shell Sort\n"); break;
@@ -118,8 +124,6 @@ int main(int argc, char **argv) {
             // Call Function
             (*functions[i])(arr, size);
 
-            printf("%lu %lu", size, datastruct_size);
-
             printf("%lu elements, %lu moves, %lu compares\n", size, moves, comparisons);
             if (i == 2 || i == 3) {
                 printf("Size: %lu\n", datastruct_size);
@@ -128,8 +132,8 @@ int main(int argc, char **argv) {
             // Print Sorted Arary
             for (uint32_t i = 0; i < elements && i < size; i++) {
                 printf("%13" PRIu32, arr[i]);
-                if ((i + 1) % 5 == 0 || i + 1 == elements
-                    || i + 1 == size) { // do not print if no more elements
+                // do not print if no more elements
+                if ((i + 1) % 5 == 0 || i + 1 == elements || i + 1 == size) {
                     printf("\n");
                 }
             }
