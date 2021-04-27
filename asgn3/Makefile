@@ -27,7 +27,7 @@ leak-check: clean all
          --track-origins=yes\
          --verbose\
          --log-file=valgrind-out.txt\
-         ./sorting -sb -n 200
+         ./sorting -a -n 200
 	vim valgrind-out.txt
 
 scan-build: clean

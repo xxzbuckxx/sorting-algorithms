@@ -72,6 +72,7 @@ void quick_sort_stack(uint32_t *A, uint32_t n) {
             datastruct_size = stack_size(s) > datastruct_size ? stack_size(s) : datastruct_size;
         }
     }
+    stack_delete(&s);
     return;
 }
 
@@ -106,5 +107,6 @@ void quick_sort_queue(uint32_t *A, uint32_t n) {
             datastruct_size = queue_size(q) > datastruct_size ? queue_size(q) : datastruct_size;
         }
     }
+    queue_delete(&q);
     return;
 }
