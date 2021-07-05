@@ -1,6 +1,6 @@
 # Assignment 3 - Sorting: Putting your affairs in order
 
-A program (sorting) that sorts an array using Bubble Sort, Shell Sort, and 2 versions of Quicksort (using a stack and using a queue).
+A program (sorting) that sorts an array using Bubble Sort, Shell Sort, and 2 versions of Quicksort (using a stack and using a queue). Programs were created and tested on Ubuntu 20.04.
 
 # How to Build
 
